@@ -89,7 +89,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'smartfreeze.catalog',
-    'smart_selects',
 )
 
 try:

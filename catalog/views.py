@@ -1,20 +1,17 @@
           # -*- coding: utf-8 -*-
+import json
+import urllib
+from django.utils import simplejson
 from django.shortcuts import get_object_or_404, render_to_response
-from django.core import urlresolvers
+from django.core import urlresolvers, serializers
 from django.template import RequestContext
-from catalog.models import Categories, Series, Sections
+from catalog.models import Categories, Series, Sections, Features, FeaturesName
 from catalog.forms import ProductAddToCartForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from cart import cart
 
 def index(request):
-    # На главную отдаю только последние 3 тавара со спец ценой
-    special_prices = Series.objects.filter(is_special_price=True)[0:3]
-    # На главную отдаю только последние 3 тавара бестселлера
-    bestsellers = Series.objects.filter(is_bestseller=True)[0:3]
-    page_title = "topDJshop - интернет магазин аудио оборудования"
-    meta_keywords = page_title
-    meta_description = "Наушники - для DJ, топовые модели Топовые наушники по доступным ценам. Dr.dre Beats, Pioneer HDJ, Bose."
+    sections = Sections.objects.all()
     return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 
 def cats(request):
@@ -83,3 +80,17 @@ def blog(request):
 def delivery(request):
     page_title = "Доставка и оплата"
     return render_to_response('main/delivery.html', locals(), context_instance=RequestContext(request))
+
+def test(request):
+    return render_to_response('test.html', locals(), context_instance=RequestContext(request))
+
+def test_json(request, series_id):
+    series = Series.objects.get(id=series_id)
+    features = series.features_set.all()
+    features_name = []
+    feature_count = 0
+    for feature in features:
+        features_name.append({feature_count : feature.name.id})
+        feature_count += 1
+    return HttpResponse( simplejson.dumps( features_name ), mimetype="application/json" )
+

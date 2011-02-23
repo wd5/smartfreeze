@@ -9,7 +9,6 @@ urlpatterns = patterns('',
     (r'^', include('smartfreeze.catalog.urls')),
 #    (r'^cart/', include('smartfreeze.cart.urls')),
     (r'^admin/', include(admin.site.urls)),
-    url(r'^chaining/', include('smart_selects.urls')),
 )
 
 if settings.DEBUG:

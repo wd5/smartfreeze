@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 from catalog.models import Series, Models, ProductsPhoto, Categories, Sections, Features, FeaturesName, Values, Brands
+from django import forms
+import models
 
 class PhotoInline(admin.StackedInline):
     model = ProductsPhoto

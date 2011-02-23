@@ -123,7 +123,7 @@ class Features(models.Model):
 class Values(models.Model):
     value = models.CharField(max_length=255)
     model = models.ForeignKey(Models)
-    name = models.ForeignKey(Features)
+    name = models.ForeignKey(FeaturesName)
 
     def __unicode__(self):
         return unicode(self.name)
