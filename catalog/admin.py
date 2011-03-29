@@ -4,16 +4,26 @@ from catalog.models import Series, Models, ProductsPhoto, Categories, Sections, 
 from django import forms
 import models
 
-class PhotoInline(admin.StackedInline):
+class PhotoInline(admin.TabularInline):
     model = ProductsPhoto
 
-class FeaturesInline(admin.StackedInline):
+class FeaturesInline(admin.TabularInline):
     model = Features
+
+class ValuesInline(admin.TabularInline):
+    model = Values
+
+class ModelsAdmin(admin.ModelAdmin):
+    inlines = [ValuesInline]
+
+class ModelsInline(admin.TabularInline):
+    model = Models
+    inlines = [ValuesInline]
 
 admin.site.register(ProductsPhoto)
 
 class SeriesAdmin(admin.ModelAdmin):
-    inlines = [PhotoInline, FeaturesInline]
+    inlines = [PhotoInline, FeaturesInline, ModelsInline]
     list_display = ('name', 'created_at', 'updated_at',)
     list_display_links = ('name',)
     list_per_page = 50
@@ -40,11 +50,6 @@ admin.site.register(Sections, SectionsAdmin)
 
 admin.site.register(FeaturesName)
 
-class ValuesInline(admin.StackedInline):
-    model = Values
-
-class ModelsAdmin(admin.ModelAdmin):
-    inlines = [ValuesInline]
 
 admin.site.register(Models, ModelsAdmin)
 admin.site.register(Brands)
