@@ -1,21 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-{% for section in sections %}
-        <li> <a href="{{ section.get_absolute_url }}" title="">{{ section.name }}</a>
-            <ul class="sidebar_menu">
-                {% for category in section.categories_set.all %}
-                    <li>
-                        <a href="{{ category.get_absolute_url }}" title="">{{ category.name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-{% endfor %}
-<li> <a href="/cats/all-goods" title="">Все товары</a><br><br>
-</body>
-</html>
+{% load catalog_filters %}
+{% category_list request.path %}
+Специальная цена:<br>
+{% for item in special_price %}
+    {{ item.name }} - Название<br>
+    {{ item.get_absolute_url }} - URL<br>
+    {{ item.model_set.all.0.price }} - Цена<br>
+    {{ item.modelsphoto_set.all.0.image.thumb_url }} - Фото<br>
+{% endfor %}<br>
+Лидеры продаж:<br>
+{% for item in bestsellers %}
+    {{ item.name }} - Название<br>
+    {{ item.get_absolute_url }} - URL<br>
+    {{ item.model_set.all.0.price }} - Цена<br>
+    {{ item.modelsphoto_set.all.0.image.thumb_url }} - Фото<br>
+{% endfor %}<br>

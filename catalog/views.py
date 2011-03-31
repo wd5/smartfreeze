@@ -4,13 +4,14 @@ from django.utils import simplejson
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core import urlresolvers, serializers
 from django.template import RequestContext
-from catalog.models import Categories, Series, Sections, Features, FeaturesName
+from catalog.models import Category, Series, Section, Feature, FeaturesName
 from catalog.forms import ProductAddToCartForm
 from django.http import HttpResponseRedirect, HttpResponse
 from cart import cart
 
 def index(request):
-    sections = Sections.objects.all()
+    special_price = Series.objects.filter(is_special_price=True)
+    bestsellers = Series.objects.filter(is_bestseller=True)
     return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 
 def cats(request):
@@ -85,7 +86,7 @@ def test(request):
 
 def test_json(request, series_id):
     series = Series.objects.get(id=series_id)
-    features = series.features_set.all()
+    features = series.feature_set.all()
     features_name = []
     feature_count = 0
     for feature in features:

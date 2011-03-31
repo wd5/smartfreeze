@@ -1,26 +1,26 @@
 from django.contrib import admin
 
-from catalog.models import Series, Models, ProductsPhoto, Categories, Sections, Features, FeaturesName, Values, Brands
+from catalog.models import Series, Model, ModelsPhoto, Category, Section, Feature, FeaturesName, Value, Brand
 from django import forms
 import models
 
 class PhotoInline(admin.TabularInline):
-    model = ProductsPhoto
+    model = ModelsPhoto
 
 class FeaturesInline(admin.TabularInline):
-    model = Features
+    model = Feature
 
 class ValuesInline(admin.TabularInline):
-    model = Values
+    model = Value
 
 class ModelsAdmin(admin.ModelAdmin):
     inlines = [ValuesInline]
 
 class ModelsInline(admin.TabularInline):
-    model = Models
+    model = Model
     inlines = [ValuesInline]
 
-admin.site.register(ProductsPhoto)
+admin.site.register(ModelsPhoto)
 
 class SeriesAdmin(admin.ModelAdmin):
     inlines = [PhotoInline, FeaturesInline, ModelsInline]
@@ -41,17 +41,17 @@ class CategoriesAdmin(admin.ModelAdmin):
     search_fields = ['name', 'description',]
     prepopulated_fields = {'slug' : ('name',)}
 
-admin.site.register(Categories, CategoriesAdmin)
+admin.site.register(Category, CategoriesAdmin)
 
 class SectionsAdmin(admin.ModelAdmin):
         prepopulated_fields = {'slug' : ('name',)}
 
-admin.site.register(Sections, SectionsAdmin)
+admin.site.register(Section, SectionsAdmin)
 
 admin.site.register(FeaturesName)
 
 
-admin.site.register(Models, ModelsAdmin)
-admin.site.register(Brands)
-admin.site.register(Values)
+admin.site.register(Model, ModelsAdmin)
+admin.site.register(Brand)
+admin.site.register(Value)
 

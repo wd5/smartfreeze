@@ -11,13 +11,13 @@
         $("#id_series").change(function () {
                 $('.inline-deletelink').trigger('click');
             var opt_value = $('#id_series option:selected').attr('value');
-            var col = ( $('.dynamic-values_set').size())-1;
+            var col = ( $('.dynamic-value_set').size())-1;
             $.getJSON("/test_json/" + opt_value, function(json) {
                 $.each(json, function(entryIndex, entry) {
                         if (entryIndex>col){
                                 $('.add-row a').trigger('click');
                         }
-                    $('#id_values_set-' + entryIndex + '-name').children('option[value=' + entry[entryIndex] + ']').attr('selected','selected');
+                    $('#id_value_set-' + entryIndex + '-name').children('option[value=' + entry[entryIndex] + ']').attr('selected','selected');
                 });
             });
         })
