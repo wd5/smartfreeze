@@ -77,7 +77,7 @@
 									{% for item in special_price %}
 									<div class="special_slider_product alignleft">
 										<div class="special_slider_product_name">
-											<a href=' {{ item.get_absolute_url }}'>{{ item.name }}</a>
+											<a href=' {{ item.get_absolute_url }}'>{{ item.category }} {{ item.name }} {{ item.brand }}</a>
 										</div>
 										<img src="{{ item.modelsphoto_set.all.0.image.thumb_url }}" class="special_slider_product_image"/>
 										<div class="special_slider_product_price">
@@ -97,7 +97,7 @@
 						{% for item in bestsellers %}
 						<div class="best_product alignleft">
 							<div class="product_name">
-								<a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+								<a href="{{ item.get_absolute_url }}">{{ item.category }} {{ item.name }} {{ item.brand }}</a>
 								<i class="b_arrow"></i>
 							</div>
 							<img src="{{ item.modelsphoto_set.all.0.image.thumb_url }}" class="product_image"/>
