@@ -34,6 +34,14 @@ def show_category(request, category_slug):
                 products += cat.products_set.filter(is_active=True)
     return render_to_response("main/catalog.html", locals(), context_instance=RequestContext(request))
 
+def show_category_brand(request, category_slug, brand_slug):
+    pass
+
+def show_section(request, section_slug):
+    section = Section.objects.get(slug=section_slug)
+    cats = section.category_set.all()
+    return render_to_response("main/section.html", locals(), context_instance=RequestContext(request))
+
 def show_product(request, product_slug):
     product = get_object_or_404(Series, slug=product_slug)
     photos = product.productsphoto_set.all()
@@ -93,4 +101,6 @@ def test_json(request, series_id):
         features_name.append({feature_count : feature.name.id})
         feature_count += 1
     return HttpResponse( simplejson.dumps( features_name ), mimetype="application/json" )
+
+
 

@@ -37,6 +37,13 @@ class Category(models.Model):
     def get_absolute_url(self):
         return ('catalog-page', [str(self.slug)])
 
+    def get_brands(self):
+        series = Series.objects.filter(category=self)
+        brands = []
+        for item in series:
+            brands.append(item.brand)
+        return brands
+
 def validate_even(value):
         if len(value) > 500:
             raise ValidationError(u'Количество символов: %s. Максимально разрешенное: 500'% len(value) )
@@ -50,6 +57,9 @@ class Brand(models.Model):
 
     class Meta:
         verbose_name_plural = 'Производитель'
+
+    def get_absolute_url(self):
+        return self.slug
 
 class Series(models.Model):
     category = models.ForeignKey(Category, verbose_name='Категория')

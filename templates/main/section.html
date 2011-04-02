@@ -1,0 +1,10 @@
+{{ section.name }} - Название секции<br><br>
+
+Категории:<br>
+{% for cat in cats %}
+    <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a><br><br>
+    Производители:<br>
+    {% for brand in cat.get_brands %}
+        <a href="{{ cat.get_absolute_url }}{{ brand.get_absolute_url }}">{{ brand.name }}</a> 
+    {% endfor %}
+{% endfor %}
