@@ -6,5 +6,5 @@
     Производители:<br>
     {% for brand in cat.get_brands %}
         <a href="{{ cat.get_absolute_url }}{{ brand.get_absolute_url }}">{{ brand.name }}</a> 
-    {% endfor %}
+    {% endfor %}<br>
 {% endfor %}
