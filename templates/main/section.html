@@ -3,6 +3,7 @@
 {% for cat in cats %}
     Категория:<br>
     <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a><br><br>
+    <img src="{{ cat.series_set.all.0.modelsphoto_set.all.0.image.thumb_url }}"/><br> - Фото
     Производители:<br>
     {% for brand in cat.get_brands %}
         <a href="{{ cat.get_absolute_url }}{{ brand.get_absolute_url }}">{{ brand.name }}</a> 
