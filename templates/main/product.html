@@ -12,11 +12,6 @@
     {% endfor %}
 {% endfor %}<br><br>
 
-{% for model in product.model_set.all %}
-    {% for item in model.value_set.all %}
-        {{ item.name }}: {{ item.value }}
-    {% endfor %}
-{% endfor %}
 <form method="post" action="" class="cart"> {% csrf_token %}
     <input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" /> <br />
     <input type="submit" value="В корзину" />
