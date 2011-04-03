@@ -21,6 +21,7 @@ class Section(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
+    image = models.ImageField(upload_to='category_image')
     section = models.ForeignKey(Section)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

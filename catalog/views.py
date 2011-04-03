@@ -23,15 +23,8 @@ def show_category(request, category_slug):
         url = urlresolvers.reverse('show_cart')
         return HttpResponseRedirect(url)
     else:
-        try:
-            category = Categories.objects.get(slug=category_slug)
-            products = category.products_set.filter(is_active=True)
-        except :
-            section = Sections.objects.get(slug=category_slug)
-            category = section.categories_set.filter(is_active=True)
-            products = []
-            for cat in category:
-                products += cat.products_set.filter(is_active=True)
+        category = Category.objects.get(slug=category_slug)
+        products = category.series_set.all()
     return render_to_response("main/catalog.html", locals(), context_instance=RequestContext(request))
 
 def show_category_brand(request, category_slug, brand_slug):

@@ -1,0 +1,18 @@
+{% for product in products %}
+    <a href="{{ product.get_absolute_url }}">{{ category.name }} {{ product.name }}</a><br>
+    {{ product.modelsphoto_set.all.0.image.thumb_url }} - Фото<br>
+    {{ product.brand }} - Производитель<br>
+    {{ product.mini_html_description|safe }} - Мини описание в html<br><br>
+    Модели:<br>
+    {% for model in product.model_set.all  %}
+        {{ model.name }}<br>
+        Характеристики:<br>
+        {% for item in model.value_set.all %}
+            {{ item.name }}: {{ item.value }}
+        {% endfor %}
+    {% endfor %}<br><br>
+    <form method="post" action="" class="cart"> {% csrf_token %}
+    	<input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" /> <br />
+    	<input type="submit" value="В корзину" />
+  	</form>
+{% endfor %}
