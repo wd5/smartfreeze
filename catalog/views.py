@@ -37,30 +37,7 @@ def show_section(request, section_slug):
 
 def show_product(request, product_slug):
     product = get_object_or_404(Series, slug=product_slug)
-    photos = product.productsphoto_set.all()
-    features = product.features_set.all()
-    # evaluate the HTTP method, change as needed
-    if request.method == 'POST':
-        #create the bound form
-        postdata = request.POST.copy()
-        form = ProductAddToCartForm(request, postdata)
-        #check if posted data is valid
-        if form.is_valid():
-            #add to cart and redirect to cart page
-            cart.add_to_cart(request)
-            # if test cookie worked, get rid of it
-            if request.session.test_cookie_worked():
-                request.session.delete_test_cookie()
-            url = urlresolvers.reverse('show_cart')
-            return HttpResponseRedirect(url)
-    else:
-        #create the unbound form. Notice the request as a keyword argument
-        form = ProductAddToCartForm(request=request, label_suffix=':')
-    # assign the hidden input the product slug
-    form.fields['product_slug'].widget.attrs['value'] = product_slug
-    # set test cookie to make sure cookies are enabled
-    request.session.set_test_cookie()
-    return render_to_response("main/tovar.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("main/product.html", locals(), context_instance=RequestContext(request))
 
 def all_goods(request):
     if request.method == 'POST':
