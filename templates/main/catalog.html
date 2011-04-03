@@ -87,7 +87,6 @@
 					{% endfor %}
                     {% for product in products %}
                         {% for model in product.model_set.all  %}
-					        {{ model.name }}<br>
 					        Характеристики:<br>
 					        {% for item in model.value_set.all %}
 					            {{ item.name }}: {{ item.value }}
