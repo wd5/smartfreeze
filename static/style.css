@@ -144,7 +144,7 @@ body{
 }
 #searchform #s{
 	height:25px;
-	width:535px;	
+	width:535px;
 	padding: 0;
 	-webkit-border-top-left-radius: 4px;
 	-webkit-border-bottom-left-radius: 4px;
@@ -203,7 +203,7 @@ body{
 	padding-top: 20px;
 	display: none;
 }
-#sidebar_menu li ul li{	
+#sidebar_menu li ul li{
 	background: url('images/second_arrow.gif') 0 5px no-repeat;
 }
 #sidebar_menu li a{
@@ -333,7 +333,7 @@ body{
 	width:198px;
 	height: 240px;
 	text-align: center;
-	border-bottom: 1px dotted #d7d7d7; 
+	border-bottom: 1px dotted #d7d7d7;
 	margin-bottom: 15px;
 }
 #best_sellers .best_product .product_name{
@@ -440,7 +440,7 @@ body{
 	text-decoration: none;
 }
 #content .cats_prew_block a:hover{
-	color:#278cbd;
+	color:#ff7200;
 	text-decoration: underline;
 }
 #content .cats_prew .image_block{
@@ -449,6 +449,10 @@ body{
 	left: 0;
 	overflow: hidden;
 	width: 165px;
+}
+#content .cats_prew .image_block img{
+	width: 155px;
+	max-height: 117px;
 }
 #content .cats_prew .cats_prew_name{
 	position: absolute;
@@ -464,6 +468,10 @@ body{
 	font-size: 12px;
 	line-height: 12px;
 	height: 30px;
+}
+#content .cats_prew .cats_prew_name a{
+	font-family: Georgia;
+	color: white;
 }
 #content .prew_blik{
 	position: absolute;
@@ -501,9 +509,9 @@ body{
 }
 .basket_back, .basket_price{
 	padding: 5px 0 5px 20px;
-	border-bottom: 1px dotted #d7d7d7;	
+	border-bottom: 1px dotted #d7d7d7;
 	font-style: italic;
-	font-weight: 700;	
+	font-weight: 700;
 }
 .basket_back a, .basket_price a{
 	font-size: 13px;
