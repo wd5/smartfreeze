@@ -35,6 +35,8 @@ def show_section(request, section_slug):
     return render_to_response("main/section.html", locals(), context_instance=RequestContext(request))
 
 def show_product(request, product_slug):
+    if request.method == 'POST':
+        cart.add_to_cart(request)
     product = get_object_or_404(Series, slug=product_slug)
     return render_to_response("main/product.html", locals(), context_instance=RequestContext(request))
 

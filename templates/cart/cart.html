@@ -1,0 +1,4 @@
+{% for item in cart_items %}
+    {{ item.product.category }} {{ item.product }} {{ item.product.brand }}<br>
+    {{ item.product.modelsphoto_set.all.0.image.thumb_url }}
+{% endfor %}
