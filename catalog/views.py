@@ -20,13 +20,10 @@ def cats(request):
     return render_to_response("main/cats.html", locals(), context_instance=RequestContext(request))
 
 def show_category(request, category_slug):
+    category = Category.objects.get(slug=category_slug)
+    products = category.series_set.all()
     if request.method == 'POST':
         cart.add_to_cart(request)
-        url = urlresolvers.reverse('show_cart')
-        return HttpResponseRedirect(url)
-    else:
-        category = Category.objects.get(slug=category_slug)
-        products = category.series_set.all()
     return render_to_response("main/catalog.html", locals(), context_instance=RequestContext(request))
 
 def show_category_brand(request, category_slug, brand_slug):
