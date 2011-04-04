@@ -9,25 +9,28 @@
 	<![endif]-->
 	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/circle.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/sizetable.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#sidebar_menu>li a').click(function(){
+			/*$('#sidebar_menu>li a').click(function(){
 				$
 				$(this).parents('li').children('ul').toggle();
 				return false;
+			});*/
+			$('#sidebar_menu li ul li').each(function(){
+					if($(this).hasClass('active')){
+						$(this).parents('li').addClass('active');
+					}
 			});
 		});
 	</script>
 </head>
 <body>
 {% load catalog_filters %}
-	<script type="text/javascript">
-		jQuery.fn.circle();
-	</script>
 	<div id="wrapper">
 		<div id="header">
 			<div id="left_head" class="alignleft">
-				<img src="{{ MEDIA_URL }}images/logo.png" class="alignleft" id="logotype"/>
+				<a href="/"><img src="{{ MEDIA_URL }}images/logo.png" class="alignleft" id="logotype"/></a>
 			</div>
 			<div id="right_head" class="alignleft">
 				<div id="basket_box">
@@ -46,7 +49,7 @@
  					</div>
 				</div>
 				<ul id="menu">
-					<li><a href="#">Главная</a></li>
+					<li><a href="/">Главная</a></li>
 					<li><a href="#">Каталог</a></li>
 					<li><a href="#">Доставка и оплата</a></li>
 					<li><a href="#">О нас</a></li>
@@ -69,10 +72,16 @@
 					{% for product in products %}
 						<table border="0" cellpadding="0" cellspacing="0" class="product_dscr_table textleft">
 							<tr>
-								<td rowspan="20" class="img_block"><img src="{{ product.modelsphoto_set.all.0.image.thumb_url }}"/><td>
+								<td rowspan="15" class="img_block">
+										<img src="{{ product.modelsphoto_set.all.0.image.thumb_url }}"/>
+										<form method="post" action="" class="cart textright"> {% csrf_token %}
+									    	<input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" />
+									    	<input type="submit" value=" " class="btn"/>
+									  	</form>
+								</td>
 								<td colspan="5" class="dscr">
 									<h4>{{ category.name }} {{ product.name }}</h4>
-									<a href="#">{{ product.brand }}</a></br></br>
+									<a href="{{ product.brand.get_absolute_url }}">{{ product.brand }}</a></br></br>
 									<p>{{ product.mini_html_description|safe }}</p>
 								</td>
 							</tr>
@@ -82,30 +91,28 @@
 						        		<td>{{ model.name }}</td>
 						    	{% endfor %}
 							</tr>
-							<tr><td colspan="5" class="dotted_border_bottom"></td></tr>
+							<tr>
+								<td colspan="5" class="dotted_border_bottom"></td>
+							</tr>
                             {% for feature in product.feature_set.all %}
-							        <tr>
+							        <tr class="features">
 										<td>{{ feature.name }}</td>
-									</tr>
+									
                                 {% for model in product.model_set.all %}
                                     {% for item in model.value_set.all %}
                                         {% if item.name == feature.name %}
-                                            {{ item.value }}
+                                            <td class="textcenter values">{{ item.value }}</td>
                                         {% endif %}
                                     {% endfor %}
                                 {% endfor %}
+                                </tr>
                             {% endfor %}
-							<tr>
-								<td colspan="5">
-									<form method="post" action="" class="cart textright"> {% csrf_token %}
-								    	<input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" /> <br />
-								    	<input type="submit" value=" " class="btn"/>
-								  	</form>
-								</td>
-							</tr>
+                            <tr><td colspan="5" class="dotted_border_bottom" style="padding-bottom:10px;"></td></tr>
 						</table>
 					{% endfor %}
-
+					<script type="text/javascript">
+						jQuery.fn.sizetable();
+					</script>
 					<div id="seo_block">
 						<h1>Наши преимущества</h1>
 						<h4>Мы предлагаем комплексное оснащение ресторанов, кафе, баров, столовых.</h4>
