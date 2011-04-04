@@ -87,6 +87,13 @@
 							        <tr>
 										<td>{{ feature.name }}</td>
 									</tr>
+                                {% for model in product.model_set.all %}
+                                    {% for item in model.value_set.all %}
+                                        {% if item.name == feature.name %}
+                                            {{ item.value }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
                             {% endfor %}
 							<tr>
 								<td colspan="5">
