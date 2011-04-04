@@ -46,8 +46,8 @@ class Category(models.Model):
         return brands
 
 def validate_even(value):
-        if len(value) > 500:
-            raise ValidationError(u'Количество символов: %s. Максимально разрешенное: 500'% len(value) )
+        if len(value) > 1000:
+            raise ValidationError(u'Количество символов: %s. Максимально разрешенное: 1000'% len(value) )
 
 class Brand(models.Model):
     name = models.CharField(max_length=50, unique=True)
