@@ -107,6 +107,10 @@
 							</div>
 							<img src="{{ item.modelsphoto_set.all.0.image.thumb_url }}" class="product_image"/>
 							<div class="product_price">
+                            <form method="post" action="" class="cart"> {% csrf_token %}
+                                <input type="hidden" name="product_slug" value="{{ item.slug }}" id="{{ item.id }}" /> <br />
+                                <input type="submit" name='submit'  value="В корзину" />
+                            </form>
 								<span><a href="#">В корзину</a></span>
 								<i class="buy_button"><a href="#"></a></i>
 							</div>

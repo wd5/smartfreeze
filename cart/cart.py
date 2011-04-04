@@ -1,12 +1,14 @@
           # -*- coding: utf-8 -*-
-from models import CartItem, Clients
+from models import CartItem, Client, CartProduct
 from catalog.models import *
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
-import threading
+import threading, urllib2, urllib
+from hashlib import md5
 import decimal
 import random
 import settings
+from django.utils.encoding import smart_str, smart_unicode
 
 CART_ID_SESSION_KEY = 'cart_id'
 
@@ -33,41 +35,58 @@ def _generate_cart_id():
 
 def get_cart_items(request):
     """ return all items from the current user's cart """
-    return CartItem.objects.filter(cart_id=_cart_id(request))
+    #return CartItem.objects.filter(cart_id=_cart_id(request))
+    try:
+        cartid = CartItem.objects.get(cart_id = _cart_id(request))
+        return CartProduct.objects.filter(cartitem__id__iexact=cartid.id)
+    except :
+        return False
 
 def add_to_cart(request):
-    """ function that takes a POST request and adds a product instance to the current customer's shopping cart """
     postdata = request.POST.copy()
-    # get product slug from post data, return blank if empty
+    # Получаю название заказанного продукта
     product_slug = postdata.get('product_slug','')
-    # get quantity added, return 1 if empty
-#    quantity = postdata.get('quantity',1)
     quantity = 1
-    # fetch the product or return a missing page error
-    p = get_object_or_404(Series, slug=product_slug)
-    #get products_image in cart
-    cart_products = get_cart_items(request)
     product_in_cart = False
-    # check to see if item is already in cart
-    for cart_item in cart_products:
-        if cart_item.product.id == p.id:
-            # update the quantity if found
-            cart_item.augment_quantity(quantity)
-            product_in_cart = True
-    if not product_in_cart:
-        # create and save a new cart item
+    # Получаю заказанный продукт
+    p = get_object_or_404(Series, slug=product_slug)
+    # Если клиент уже есть в базе
+    if CartItem.objects.filter(cart_id = _cart_id(request)):
+        # Получаю все продукты в корзине
+        cart = CartItem.objects.get(cart_id = _cart_id(request))
+        cart_products = CartProduct.objects.filter(cartitem=cart.id)
+        # Проверяю есть ли такой продукт уже в корзине
+        for cart_item in cart_products:
+            if cart_item.product_id == p.id:
+                # Если уже есть то обновляю количество
+                ttt = CartProduct.objects.get(cartitem=cart,product=p.id)
+                ttt.augment_quantity(quantity)
+                product_in_cart = True
+        # Если нету то добавляю
+        if not product_in_cart:
+            cart = CartItem.objects.get(cart_id = _cart_id(request))
+            cp = CartProduct(cartitem = cart, product = p)
+            cp.save()
+    # Если клиента нету в базе то создаю его
+    else:
         ci = CartItem()
-        ci.product = p
-        ci.quantity = quantity
         ci.cart_id = _cart_id(request)
         ci.save()
 
+        # И добавляю его заказ в корзину
+        cart = CartItem.objects.get(cart_id = _cart_id(request))
+        cp = CartProduct(cartitem = cart, product = p)
+        cp.save()
+
 # returns the total number of items in the user's cart
 def cart_distinct_item_count(request):
-    return get_cart_items(request).count()
+    if CartItem.objects.filter(cart_id = _cart_id(request)):
+        return get_cart_items(request).count()
+    else:
+        return 0
 
 def get_single_item(request, item_id):
-    return get_object_or_404(CartItem, id=item_id, cart_id=_cart_id(request))
+    return get_object_or_404(CartProduct, id=item_id)
 
 # update quantity for single item
 def update_cart(request):
@@ -97,9 +116,9 @@ class Subtotal:
 
     def subtotal(self):
         cart_total = decimal.Decimal('0.00')
-        discount_quantity = 0
         cart_discount_total = 0
         cart_products = get_cart_items(self.request)
+        discount_quantity = 0
         for cart_item in cart_products:
             if cart_item.product.is_discount:
                 discount_quantity += cart_item.quantity
@@ -107,14 +126,17 @@ class Subtotal:
             cart_total += cart_item.product.price * cart_item.quantity
         if len(cart_products) >= 2:
             self.discount = (cart_discount_total * 10)/100
+        elif discount_quantity >=2:
+            self.discount = (cart_discount_total * 10)/100
         cart_total -= self.discount
         return cart_total
 
 def save_client(request, form):
-    cart_id = _cart_id(request)
+    cart = CartItem.objects.get(cart_id=_cart_id(request))
+    subtotal_class = Subtotal(request)
 
-    ci = Clients()
-    ci.cart = cart_id
+    ci = Client()
+    ci.cart = cart
 
     ci.name = form.cleaned_data['name']
     ci.surname = form.cleaned_data['surname']
@@ -124,19 +146,28 @@ def save_client(request, form):
     ci.phone = form.cleaned_data['phone']
     ci.address = form.cleaned_data['address']
     ci.email = form.cleaned_data['email']
+    ci.subtotal = subtotal_class.subtotal()
+    ci.discount = subtotal_class.discount
+    ci.referrer = request.COOKIES.get('REFERRER', None)
     ci.save()
+    # Обновляю количество на складе
+    products = CartProduct.objects.filter(cartitem=cart)
+    for product in products:
+        store_product = Product.objects.get(name=product.product)
+        store_product.quantity -= product.quantity
+        store_product.save()
 
-def send_admin_email(cart_items, form, cart_subtotal, discount):
+def send_admin_email(request, cart_items, form, cart_subtotal, discount):
     products_for_email = ""
     for item in cart_items:
-        products_for_email += u"%s:%s шт  http://topdjshop.ru%s\n" % (item.product.name,
+        products_for_email += u"%s:%s шт  http://my-spy.ru%s\n" % (item.product.name,
                                           item.quantity, item.product.get_absolute_url())
     t = threading.Thread(target= send_mail, args=[
         u'Заказ от %s %s' % (form.cleaned_data['name'], form.cleaned_data['surname'] ),
-        u'Имя: %s %s %s \nГород: %s\nИндекс: %s\nТелефон: %s\nАдрес: %s\nEmail: %s\n\n%s\nВсего на сумму: %s руб\nСкидка: %s руб'
+        u'Имя: %s %s %s \nГород: %s\nИндекс: %s\nТелефон: %s\nАдрес: %s\nEmail: %s\n\n%s\nВсего на сумму: %s руб\nСкидка: %s руб\n\nПришел с: %s'
         % (form.cleaned_data['surname'], form.cleaned_data['name'], form.cleaned_data['patronymic'],
         form.cleaned_data['city'], form.cleaned_data['postcode'], form.cleaned_data['phone'],
-        form.cleaned_data['address'], form.cleaned_data['email'], products_for_email, cart_subtotal, discount),
+        form.cleaned_data['address'], form.cleaned_data['email'], products_for_email, cart_subtotal, discount, request.COOKIES.get('REFERRER', None) ),
         settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER], 'fail_silently=False'])
     t.setDaemon(True)
     t.start()
@@ -144,12 +175,25 @@ def send_admin_email(cart_items, form, cart_subtotal, discount):
 def send_client_email(cart_items, form, cart_subtotal):
     products_for_email = ""
     for item in cart_items:
-        products_for_email += u"%s:%s шт  http://topdjshop.ru%s\n" % (item.product.name,
+        products_for_email += u"%s:%s шт  http://my-spy.ru%s\n" % (item.product.name,
                                           item.quantity, item.product.get_absolute_url())
     t = threading.Thread(target= send_mail, args=[
-        u'Ваш заказ от topdjshop',
-        u'Здравствуйте %s,\n\nВы оформили у нас заказ на:\n%s\nВсего на сумму: %s руб\n\nВ ближайшее время наш менеджер с вами свяжется.\nС Уважением, topdjshop.ru' %
+        u'Ваш заказ от my-spy',
+        u'Здравствуйте %s,\n\nВы оформили у нас заказ на:\n%s\nВсего на сумму: %s руб\n\nВ ближайшее время наш менеджер с вами свяжется.\nС Уважением, my-spy.ru' %
         (form.cleaned_data['name'], products_for_email, cart_subtotal ),
         settings.EMAIL_HOST_USER, [form.cleaned_data['email']], 'fail_silently=False'])
     t.setDaemon(True)
     t.start()
+
+def send_sms(cart_items, form):
+    login = 'palv1@yandex.ru'
+    password = '97ajhJaj9zna'
+    phones = ["79151225291", "79267972292"]
+    from_phone = form.cleaned_data['phone']
+    products = ""
+    for item in cart_items:
+        products += "%sx%s" % (item.product.slug, item.quantity)
+    msg = "%s,%s %s" % (form.cleaned_data['name'], form.cleaned_data['city'], products)
+    msg = urllib.urlencode({'msg': msg.encode('cp1251')})
+    for to_phone in phones:
+        urllib2.urlopen('http://sms48.ru/send_sms.php?login=%s&to=%s&%s&from=%s&check2=%s' % (login, to_phone, msg.encode('cp1251'), from_phone, md5(login + md5(password).hexdigest() + to_phone).hexdigest()) )

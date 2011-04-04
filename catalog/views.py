@@ -12,6 +12,8 @@ from cart import cart
 def index(request):
     special_price = Series.objects.filter(is_special_price=True)
     bestsellers = Series.objects.filter(is_bestseller=True)
+    if request.method == 'POST':
+        cart.add_to_cart(request)
     return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 
 def cats(request):
