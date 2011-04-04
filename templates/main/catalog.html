@@ -83,18 +83,11 @@
 						    	{% endfor %}
 							</tr>
 							<tr><td colspan="5" class="dotted_border_bottom"></td></tr>
-							 {% for product in products %}
-							
-								{% for model in product.model_set.all  %}
-							        {% for item in model.value_set.all %}
+                            {% for feature in product.feature_set.all %}
 							        <tr>
-										<td>{{ item.name }}</td>
-										<td>{{ item.value }}</td>
+										<td>{{ feature.name }}</td>
 									</tr>
-									{% endfor %}
-							    {% endfor %}
-							
-							{% endfor %}
+                            {% endfor %}
 							<tr>
 								<td colspan="5">
 									<form method="post" action="" class="cart textright"> {% csrf_token %}
@@ -105,7 +98,7 @@
 							</tr>
 						</table>
 					{% endfor %}
-					
+
 					{% for product in products %}
 					    <a href="{{ product.get_absolute_url }}">{{ category.name }} {{ product.name }}</a><br>
 					    {{ product.modelsphoto_set.all.0.image.thumb_url }} - Фото<br>
@@ -124,7 +117,7 @@
                         {% for model in product.model_set.all  %}
 					        Характеристики:<br>
 					        {% for item in model.value_set.all %}
-					            {{ item.name }}: {{ item.value }}<br>
+					            {{ item.value }}<br>
 					        {% endfor %}
 					    {% endfor %}<br><br>
                     {% endfor %}
