@@ -11,10 +11,15 @@
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/circle.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#sidebar_menu>li a').click(function(){
+			/*$('#sidebar_menu>li a').click(function(){
 				$
 				$(this).parents('li').children('ul').toggle();
 				return false;
+			});*/
+			$('#sidebar_menu li ul li').each(function(){
+					if($(this).hasClass('active')){
+						$(this).parents('li').addClass('active');
+					}
 			});
 		});
 	</script>
@@ -27,7 +32,7 @@
 	<div id="wrapper">
 		<div id="header">
 			<div id="left_head" class="alignleft">
-				<img src="{{ MEDIA_URL }}images/logo.png" class="alignleft" id="logotype"/>
+				<a href="/"><img src="{{ MEDIA_URL }}images/logo.png" class="alignleft" id="logotype"/></a>
 			</div>
 			<div id="right_head" class="alignleft">
 				<div id="basket_box">
@@ -46,7 +51,7 @@
  					</div>
 				</div>
 				<ul id="menu">
-					<li><a href="#">Главная</a></li>
+					<li><a href="/">Главная</a></li>
 					<li><a href="#">Каталог</a></li>
 					<li><a href="#">Доставка и оплата</a></li>
 					<li><a href="#">О нас</a></li>
