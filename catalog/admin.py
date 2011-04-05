@@ -52,6 +52,8 @@ admin.site.register(FeaturesName)
 
 
 admin.site.register(Model, ModelsAdmin)
-admin.site.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+admin.site.register(Brand, BrandAdmin)
 admin.site.register(Value)
 
