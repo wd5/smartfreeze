@@ -70,21 +70,25 @@
 				<!--content begin-->
 				<div id="content">
 					{% for product in products %}
+					<div class="pdtable_block">
 						<table border="0" cellpadding="0" cellspacing="0" class="product_dscr_table textleft">
 							<tr>
-								<td rowspan="15" class="img_block">
+								<td class="img_block">
 										<img src="{{ product.modelsphoto_set.all.0.image.thumb_url }}"/>
-										<form method="post" action="" class="cart textright"> {% csrf_token %}
-									    	<input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" />
-									    	<input type="submit" value=" " class="btn"/>
-									  	</form>
 								</td>
 								<td colspan="5" class="dscr">
 									<h4>{{ category.name }} {{ product.name }}</h4>
-									<a href="{{ product.brand.get_absolute_url }}">{{ product.brand }}</a></br></br>
+									<a href="{{ product.brand.get_absolute_url }}">{{ product.brand }}</a></br>
+									<form method="post" action="" class="cart textleft"> {% csrf_token %}
+									    	<input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" />
+									    	<input type="submit" value=" " class="btn"/>
+									  	</form>
+									</br>
 									<p>{{ product.mini_html_description|safe }}</p>
 								</td>
 							</tr>
+						</table>
+						<table border="0" cellpadding="0" cellspacing="0" class="product_dscr_table textleft">
 							<tr class="first_row">
 								<td>МОДЕЛИ</td>
 								{% for model in product.model_set.all  %}
@@ -92,7 +96,7 @@
 						    	{% endfor %}
 							</tr>
 							<tr>
-								<td colspan="5" class="dotted_border_bottom"></td>
+								<td colspan="12" class="dotted_border_bottom"></td>
 							</tr>
                             {% for feature in product.feature_set.all %}
 							        <tr class="features">
@@ -107,8 +111,11 @@
                                 {% endfor %}
                                 </tr>
                             {% endfor %}
-                            <tr><td colspan="5" class="dotted_border_bottom" style="padding-bottom:10px;"></td></tr>
+                            <tr><td colspan="12" class="dotted_border_bottom" style="padding-bottom:10px;"></td></tr>
 						</table>
+						<div class="arrow_right"></div>
+						<div class="arrow_left"></div>
+					</div>
 					{% endfor %}
 					<script type="text/javascript">
 						jQuery.fn.sizetable();

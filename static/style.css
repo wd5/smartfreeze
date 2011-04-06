@@ -28,6 +28,9 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 .textright{
 	text-align: right;
 }
+.textcenter{
+	text-align: center;
+}
 .clr{
 	clear: both;
 }
@@ -203,6 +206,14 @@ body{
 	padding-top: 20px;
 	display: none;
 }
+#sidebar_menu .active span{
+	color:#288ab1;
+	font-weight: 700;
+	font-size: 14px;
+}
+#sidebar_menu .active ul{
+	display: block;
+}
 #sidebar_menu li ul li{	
 	background: url('images/second_arrow.gif') 0 5px no-repeat;
 }
@@ -303,7 +314,8 @@ body{
 	height: 35px;
 	padding-top: 5px;
 	color: white;
-	font-size:10px;
+	font-size:12px;
+	font-weight: 700;
 }
 #special_slider_mid .special_slider_product_name a{
 	color: white;
@@ -337,15 +349,11 @@ body{
 	margin-bottom: 15px;
 }
 #best_sellers .best_product .product_name{
-	margin: 0 11px;
-	width: 174px;
+	margin: 0 15px;
+	width: 176px;
 	height: 30px;
-	border: 1px solid #d7d7d7;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
 	position: relative;
-	font-size: 10px;
+	font-size: 12px;
 	color: #1885b8;
 	line-height: 14px;
 }
@@ -385,23 +393,21 @@ body{
 	right:-1px;
 	top:-1px;
 	overflow: hidden;
+	border: none;
 	background: url('images/best_buy_button.png') bottom left no-repeat;
+	cursor: pointer;
 }
-#best_sellers .best_product .product_price .buy_button a:hover{
+#best_sellers .best_product .product_price .buy_button:hover{
 	background-position: left top;
 }
 #best_sellers .best_product .product_price span{
 	margin-right: 50px;
-	color:#666;
+	color:#1885b8;
 	font-family: Georgia;
 	font-style: italic;
 	font-weight: 700;
 	font-size:18px;
 	line-height: 28px;
-}
-#best_sellers .best_product .product_price span a{
-	font-family: Georgia;
-	color: #1885b8;
 }
 #best_sellers .best_product .buy_button{
 	display: block;
@@ -534,13 +540,30 @@ body{
 	vertical-align: top;
 }
 .product_dscr_table img{
-	width: 100px;
+	width: 200px;
 	margin: 0 10px;
 }
 #content .product_dscr_table h4{
 	color: #ff7200;
 	margin: 0;
 	font-size: 15px;
+}
+.pdtable_block{
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.pdtable_block .arrow_right, .pdtable_block .arrow_left{
+	
+}
+.pdtable_block .arrow_right{
+	
+}
+.pdtable_block .arrow_left{
+	
+}
+.product_dscr_table{
+	position: relative;
 }
 .product_dscr_table .dscr{
 	padding-bottom: 28px;
@@ -565,15 +588,25 @@ body{
 	background: #e9e9e9 url('images/first_row.gif') top left repeat-x;
 	text-align: center;
 }
+.product_dscr_table .cart{
+	padding: 10px 0;
+}
 .product_dscr_table .cart .btn{
-	width: 134px;
-	height: 21px;
-	background: #ff7200 url('images/in_basket.png') top left no-repeat;
-	border-color: #ff7200;
+	width: 92px;
+	height: 24px;
+	background: white url('images/in_basket.gif') 2px 2px no-repeat;
+	border-color: white;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 	cursor: pointer;
+}
+.product_dscr_table .features td{
+	font-size: 12px;
+	padding: 3px 5px;
+}
+.product_dscr_table .features .values{
+	border-left: 1px solid #b6b6b6;
 }
 #seo_block h1, #seo_block h3, #seo_block h2,  #seo_block h4{
 	text-align: center;

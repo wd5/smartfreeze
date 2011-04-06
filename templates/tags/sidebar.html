@@ -2,19 +2,17 @@
 					<h2>Каталог товара</h2>
 					{% for section in sections %}
                     {% if section.get_absolute_url == request_path %}
-                    <li> <a href="{{ section.get_absolute_url }}" title="" class="active">{{ section.name }}</a>
+                    <li class="active"> <span>{{ section.name }}</span>
                     {% else %}
                     <li> <a href="{{ section.get_absolute_url }}" title="">{{ section.name }}</a>
                     {% endif %}
 						<ul>
 							{% for category in section.category_set.all %}
-			                    <li>
                                     {% if category.get_absolute_url == request_path %}
-                                    <a href="{{ category.get_absolute_url }}" title="" class="active">{{ category.name }}</a>
+                                    <li class="active"><span>{{ category.name }}</span></li>
                                     {% else %}
-			                        <a href="{{ category.get_absolute_url }}" title="">{{ category.name }}</a>
+			                        <li><a href="{{ category.get_absolute_url }}" title="">{{ category.name }}</a></li>
                                     {% endif %}
-			                    </li>
 			                {% endfor %}
 						</ul>
 					</li>					

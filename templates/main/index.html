@@ -103,16 +103,14 @@
 						<div class="best_product alignleft">
 							<div class="product_name">
 								<a href="{{ item.get_absolute_url }}">{{ item.category }} {{ item.name }} {{ item.brand }}</a>
-								<i class="b_arrow"></i>
 							</div>
 							<img src="{{ item.modelsphoto_set.all.0.image.thumb_url }}" class="product_image"/>
 							<div class="product_price">
                             <form method="post" action="" class="cart"> {% csrf_token %}
-                                <input type="hidden" name="product_slug" value="{{ item.slug }}" id="{{ item.id }}" /> <br />
-                                <input type="submit" name='submit'  value="В корзину" />
+                                <input type="hidden" name="product_slug" value="{{ item.slug }}" id="{{ item.id }}" />
+                                <input class="buy_button" type="submit" name='submit'  value=" " />
                             </form>
-								<span><a href="#">В корзину</a></span>
-								<i class="buy_button"><a href="#"></a></i>
+								<span>В корзину</span>
 							</div>
 						</div>	
 						{% endfor %}						
@@ -120,7 +118,6 @@
 					</div>
 					
 					<div id="seo_block">
-						<h1>Наши преимущества</h1>
 						<h4>Мы предлагаем комплексное оснащение ресторанов, кафе, баров, столовых.</h4>
 						<p>Компания "СмартФриз" предлагает клиентам полный спектр товаров для общепита: профессиональное оборудование для ресторанов, столовых, баров, кафе, предприятий фаст-фуда, широкий ассортимент посуды, инвентаря и мебели. В реализуемых проектах по комплексному оснащению объектов общепита технологи компании используют только надежное ресторанное оборудование от ведущих российских и иностранных производителей. Ассортимент постоянно расширяется за счет новых марок и моделей, появляющихся на российском и мировом рынках оборудования для общепита.</p>
 					</div>
