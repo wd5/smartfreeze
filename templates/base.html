@@ -1,3 +1,4 @@
+{% load catalog_filters %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html> 
@@ -35,10 +36,8 @@
 				<a href="/"><img src="{{ MEDIA_URL }}images/logo.png" class="alignleft" id="logotype"/></a>
 			</div>
 			<div id="right_head" class="alignleft">
-				<div id="basket_box">
-					<p class="alignleft">В вашей корзине <b>{{ box_count }}</b> товар &nbsp;</p><i class="alignleft"><a href="/cart" title="сделать заказ" id="basket_in_link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></i>
-				</div>
 				<div id="head_info">
+                     {% cart_box request %}
 					<div class="info alignleft">
 						Оборудование для комплексного оснащения магазинов,<br/>
 							ресторанов, баров, столовых и других форматов<br/>
