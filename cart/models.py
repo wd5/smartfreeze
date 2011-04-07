@@ -1,12 +1,12 @@
           # -*- coding: utf-8 -*-
 from django.db import models
-from catalog.models import Series
+from catalog.models import Series, Model
 from datetime import datetime
 
 
 class CartProduct(models.Model):
     cartitem = models.ForeignKey('CartItem')
-    product = models.ForeignKey(Series)
+    product = models.ForeignKey(Model)
     quantity = models.IntegerField(default=1)
 
     def augment_quantity(self, quantity):
@@ -16,7 +16,7 @@ class CartProduct(models.Model):
 class CartItem(models.Model):
     cart_id = models.CharField(max_length=50)
     date_added = models.DateTimeField(auto_now_add=True)
-    product = models.ManyToManyField(Series, through=CartProduct)
+    product = models.ManyToManyField(Model, through=CartProduct)
 
     class Meta:
         db_table = 'cart_item'

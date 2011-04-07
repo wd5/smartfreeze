@@ -45,11 +45,11 @@ def get_cart_items(request):
 def add_to_cart(request):
     postdata = request.POST.copy()
     # Получаю название заказанного продукта
-    product_slug = postdata.get('product_slug','')
+    model_id = postdata.get('model_id','')
     quantity = 1
     product_in_cart = False
     # Получаю заказанный продукт
-    p = get_object_or_404(Series, slug=product_slug)
+    p = get_object_or_404(Model, id=model_id)
     # Если клиент уже есть в базе
     if CartItem.objects.filter(cart_id = _cart_id(request)):
         # Получаю все продукты в корзине
