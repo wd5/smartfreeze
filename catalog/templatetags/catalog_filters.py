@@ -12,10 +12,9 @@ def category_list(request_path):
         'sections': active_sections
 }
 
-@register.inclusion_tag("cart/cart_box.html")
+@register.inclusion_tag("cart/cart-box.html")
 def cart_box(request):
     box_count = cart.cart_distinct_item_count(request)
-    active_sections = Section.objects.all()
     return {
         'box_count': box_count,
 }
