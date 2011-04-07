@@ -22,7 +22,7 @@ class Category(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
     image = ThumbnailImageField(upload_to='category_image', thumb_width=200, thumb_height=200, completion="resized" )
-    section = models.ForeignKey(Section)
+    section = models.ManyToManyField(Section)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
