@@ -1,4 +1,3 @@
-{% load catalog_filters %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html> 
@@ -36,7 +35,9 @@
 				<a href="/"><img src="{{ MEDIA_URL }}images/logo.png" class="alignleft" id="logotype"/></a>
 			</div>
 			<div id="right_head" class="alignleft">
-                 {% cart_box request %}
+				<div id="basket_box">
+					<p class="alignleft">В вашей корзине <b>{{ box_count }}</b> товар &nbsp;</p><i class="alignleft"><a href="/cart" title="сделать заказ" id="basket_in_link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+				</div>
 				<div id="head_info">
 					<div class="info alignleft">
 						Оборудование для комплексного оснащения магазинов,<br/>
@@ -64,5 +65,15 @@
 			</div>
 		</div>
 {% block site_wrapper %}{% endblock %}
+			<div class="clr"></div>						
+				</div><!--content end-->
+					<div id="footer">
+				© СмартФриз 2011. <br>
+Оборудование для комплексного оснащения магазинов, ресторанов, баров, столовых и других форматов предприятий общественного питания, пищевых производств, отелей и прачечных.
+			</div>
+			</div>		
+		</div>
+		<div class="clr"></div>
+	<div>
 </body>
 </html>

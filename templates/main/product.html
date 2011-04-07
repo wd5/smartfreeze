@@ -1,10 +1,10 @@
-{% extends "base.html" %}
-{% load catalog_filters %}
 <form method="post" action="" class="cart"> {% csrf_token %}
     <input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" /> <br />
     <input type="submit" value="В корзину" />
 </form>
 
+{% extends "base.html" %}
+{% load catalog_filters %}
 {% block site_wrapper %}
 		<div id="page">
 			<div id="sidebar" class="alignleft">
@@ -61,16 +61,4 @@
 						<h1>{{ product.name }}</h1>
 						<p>{{ product.html_description|safe }}</p>
 					</div>
-					<div class="clr"></div>
-					<!--content end-->
-				</div>
-					<div id="footer">
-				© СмартФриз 2011. <br>
-Оборудование для комплексного оснащения магазинов, ресторанов, баров, столовых и других форматов предприятий общественного питания, пищевых производств, отелей и прачечных.
-			</div>
-			</div>
-		<div class="clr"></div>
-		</div>
-		<div class="clr"></div>
-	<div>
 {% endblock %}

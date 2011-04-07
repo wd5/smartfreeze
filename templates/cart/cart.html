@@ -1,4 +1,74 @@
+{% extends "base.html" %}
+{% load catalog_filters %}
+{% block site_wrapper %}
+
 {% for item in cart_items %}
     {{ item.product.category }} {{ item.product }} {{ item.product.brand }}<br>
     {{ item.product.modelsphoto_set.all.0.image.thumb_url }}
 {% endfor %}
+		<div id="page">
+			<div id="sidebar" class="alignleft">
+				{% category_list request.path %}
+			</div>
+			<div id="main" class="alignleft">
+				<!--content begin-->
+				<div id="content">
+					<h2 class="textleft">Ваша корзина</h2>
+						<table border="0" cellpadding="0" cellspacing="0" class="textleft" id="basket_prod">
+							<tr>
+								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="images/2011-03-24-inner1_06.png"/></td>
+								<td class="basket_name">Стирально-отжимные машины W</td>
+								<td class="textright"><a href="#"><img src="images/delete.png"/></a></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="maker"><a href="#">Electrolux</a>, <a href="#">Швеция</a></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="basket_discript">
+									Предназначены для стирки и отжима текстильных изделий. Влажность белья на выходе 50%. Корпус из крашенной стали. Фронтальная панель из нержавеющей стали для моделей W4130H; W4180H; W4240H.
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="images/2011-03-24-inner1_06.png"/></td>
+								<td class="basket_name">Стирально-отжимные машины W</td>
+								<td class="textright"><a href="#"><img src="images/delete.png"/></a></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="maker"><a href="#">Electrolux</a>, <a href="#">Швеция</a></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="basket_discript">
+									Предназначены для стирки и отжима текстильных изделий. Влажность белья на выходе 50%. Корпус из крашенной стали. Фронтальная панель из нержавеющей стали для моделей W4130H; W4180H; W4240H.
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="images/2011-03-24-inner1_06.png"/></td>
+								<td class="basket_name">Стирально-отжимные машины W</td>
+								<td class="textright"><a href="#"><img src="images/delete.png"/></a></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="maker"><a href="#">Electrolux</a>, <a href="#">Швеция</a></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="basket_discript">
+									Предназначены для стирки и отжима текстильных изделий. Влажность белья на выходе 50%. Корпус из крашенной стали. Фронтальная панель из нержавеющей стали для моделей W4130H; W4180H; W4240H.
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="basket_back">
+									<a href="#">Вернуться к списку</a>
+								</td>
+								<td class="basket_price">
+									<a href="#">Узнать цену</a>
+								</td>
+							</tr>
+						</table>
+					<div class="clr"></div>	
+					<div id="seo_block">
+						<h1>Наши преимущества</h1>
+						<h4>Мы предлагаем комплексное оснащение ресторанов, кафе, баров, столовых.</h4>
+						<p>Компания "СмартФриз" предлагает клиентам полный спектр товаров для общепита: профессиональное оборудование для ресторанов, столовых, баров, кафе, предприятий фаст-фуда, широкий ассортимент посуды, инвентаря и мебели. В реализуемых проектах по комплексному оснащению объектов общепита технологи компании используют только надежное ресторанное оборудование от ведущих российских и иностранных производителей. Ассортимент постоянно расширяется за счет новых марок и моделей, появляющихся на российском и мировом рынках оборудования для общепита.</p>
+					</div>		
+					
+
+{% endblock %}
