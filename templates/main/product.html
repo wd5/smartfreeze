@@ -48,7 +48,7 @@
                                     {% for model in product.model_set.all  %}
 						        		<td>
 						        			<form method="post" action="" class="cart textcenter"> {% csrf_token %}
-									    		<input type="hidden" name="model_id" value="{{ model.id }}" id="{{ model.id }}" />
+									    		<input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" />
 									    		<input type="submit" value=" " class="btn"/>
 									  		</form>
 									  	</td>
@@ -57,7 +57,7 @@
 						</table>
 					</div>
 					<script type="text/javascript">
-					//	jQuery.fn.sizetable();
+						jQuery.fn.sizetable();
 					</script>
 					<div id="seo_block">
 						<h1>{{ product.name }}</h1>
