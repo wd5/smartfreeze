@@ -1,18 +1,76 @@
-{{ product.category.name }} {{ product.name }}<br>
-{{ product.modelsphoto_set.all.0.image.thumb_url }} - Фото<br>
-{{ product.brand }} - Производитель<br>
-{{ product.mini_html_description|safe }} - Мини описание в html<br>
-{{ product.html_description|safe }} - Описание в html<br><br>
-Модели:<br>
-{% for model in product.model_set.all  %}
-    {{ model.name }}<br>
-    Характеристики:<br>
-    {% for item in model.value_set.all %}
-        {{ item.name }}: {{ item.value }}
-    {% endfor %}
-{% endfor %}<br><br>
-
+{% extends "base.html" %}
+{% load catalog_filters %}
 <form method="post" action="" class="cart"> {% csrf_token %}
     <input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" /> <br />
     <input type="submit" value="В корзину" />
 </form>
+
+{% block site_wrapper %}
+		<div id="page">
+			<div id="sidebar" class="alignleft">
+				{% category_list request.path %}
+			</div>
+			<div id="main" class="alignleft">
+				<!--content begin-->
+				<div id="content">
+					<div class="pdtable_block">
+						<table border="0" cellpadding="0" cellspacing="0" class="product_dscr_table textleft">
+							<tr>
+								<td class="img_block">
+										<img src="{{ product.modelsphoto_set.all.0.image.thumb_url }}"/>
+								</td>
+								<td colspan="5" class="dscr">
+									<h4>{{ category.name }} {{ product.name }}</h4>
+									<a href="{{ product.brand.get_absolute_url }}">{{ product.brand }}</a></br>
+									<form method="post" action="" class="cart textleft"> {% csrf_token %}
+									    	<input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" />
+									    	<input type="submit" value=" " class="btn"/>
+									  	</form>
+									</br>
+									<p>{{ product.mini_html_description|safe }}</p>
+								</td>
+							</tr>
+						</table>
+						<table border="0" cellpadding="0" cellspacing="0" class="product_dscr_table textleft">
+							<tr class="first_row">
+								<td>МОДЕЛИ</td>
+								{% for model in product.model_set.all  %}
+						        		<td>{{ model.name }}</td>
+						    	{% endfor %}
+							</tr>
+                            {% for feature in product.feature_set.all %}
+							        <tr class="features">
+										<td>{{ feature.name }}</td>
+									
+                                {% for model in product.model_set.all %}
+                                    {% for item in model.value_set.all %}
+                                        {% if item.name == feature.name %}
+                                            <td class="textcenter values">{{ item.value }}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            <tr><td colspan="12" class="dotted_border_bottom"></td></tr>
+						</table>
+					</div>
+					<script type="text/javascript">
+						jQuery.fn.sizetable();
+					</script>
+					<div id="seo_block">
+						<h1>{{ product.name }}</h1>
+						<p>{{ product.html_description|safe }}</p>
+					</div>
+					<div class="clr"></div>
+					<!--content end-->
+				</div>
+					<div id="footer">
+				© СмартФриз 2011. <br>
+Оборудование для комплексного оснащения магазинов, ресторанов, баров, столовых и других форматов предприятий общественного питания, пищевых производств, отелей и прачечных.
+			</div>
+			</div>
+		<div class="clr"></div>
+		</div>
+		<div class="clr"></div>
+	<div>
+{% endblock %}
