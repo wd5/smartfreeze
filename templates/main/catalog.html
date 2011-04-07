@@ -18,10 +18,6 @@
 								<td colspan="5" class="dscr">
 									<a href="{{ product.get_absolute_url }}"><h4> {{ category.name }} {{ product.name }}</h4></a>
 									<a href="{{ product.brand.get_absolute_url }}">{{ product.brand }}</a></br>
-									<form method="post" action="" class="cart textleft"> {% csrf_token %}
-									    	<input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" />
-									    	<input type="submit" value=" " class="btn"/>
-									  	</form>
 									</br>
 									<p>{{ product.mini_html_description|safe }}</p>
 								</td>
@@ -47,7 +43,17 @@
                                 {% endfor %}
                                 </tr>
                             {% endfor %}
-                            <tr><td colspan="12" class="dotted_border_bottom"></td></tr>
+                            <tr class="buy">
+										<td></td>
+                                    {% for model in product.model_set.all  %}
+						        		<td>
+						        			<form method="post" action="" class="cart textcenter"> {% csrf_token %}
+									    		<input type="hidden" name="product_slug" value="{{ product.slug }}" id="{{ product.id }}" />
+									    		<input type="submit" value=" " class="btn"/>
+									  		</form>
+									  	</td>
+						    		{% endfor %}
+                                </tr>                      
 						</table>
 					</div>
 					{% endfor %}

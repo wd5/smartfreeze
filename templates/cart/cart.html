@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 {% load catalog_filters %}
 {% block site_wrapper %}
-
-{% for item in cart_items %}
-    {{ item.product.category }} {{ item.product }} {{ item.product.brand }}<br>
-    {{ item.product.modelsphoto_set.all.0.image.thumb_url }}
-{% endfor %}
 		<div id="page">
 			<div id="sidebar" class="alignleft">
 				{% category_list request.path %}
@@ -15,53 +10,21 @@
 				<div id="content">
 					<h2 class="textleft">Ваша корзина</h2>
 						<table border="0" cellpadding="0" cellspacing="0" class="textleft" id="basket_prod">
+							{% for item in cart_items %}
 							<tr>
-								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="images/2011-03-24-inner1_06.png"/></td>
-								<td class="basket_name">Стирально-отжимные машины W</td>
-								<td class="textright"><a href="#"><img src="images/delete.png"/></a></td>
+								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="{{ item.product.modelsphoto_set.all.0.image.thumb_url }}"/></td>
+								<td class="basket_name">{{ item.product.category }} {{ item.product }}</td>
+								<td class="textright"><a href="#"><img src="{{ MEDIA_URL }}images/delete.png"/></a></td>
 							</tr>
 							<tr>
-								<td colspan="2" class="maker"><a href="#">Electrolux</a>, <a href="#">Швеция</a></td>
-							</tr>
-							<tr>
-								<td colspan="2" class="basket_discript">
-									Предназначены для стирки и отжима текстильных изделий. Влажность белья на выходе 50%. Корпус из крашенной стали. Фронтальная панель из нержавеющей стали для моделей W4130H; W4180H; W4240H.
-								</td>
-							</tr>
-							<tr>
-								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="images/2011-03-24-inner1_06.png"/></td>
-								<td class="basket_name">Стирально-отжимные машины W</td>
-								<td class="textright"><a href="#"><img src="images/delete.png"/></a></td>
-							</tr>
-							<tr>
-								<td colspan="2" class="maker"><a href="#">Electrolux</a>, <a href="#">Швеция</a></td>
+								<td colspan="2" class="maker"><a href="#">{{ item.product.brand }}</a></td>
 							</tr>
 							<tr>
 								<td colspan="2" class="basket_discript">
-									Предназначены для стирки и отжима текстильных изделий. Влажность белья на выходе 50%. Корпус из крашенной стали. Фронтальная панель из нержавеющей стали для моделей W4130H; W4180H; W4240H.
+								 <p>{{ item.product.mini_html_description|safe }}</p>
 								</td>
 							</tr>
-							<tr>
-								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="images/2011-03-24-inner1_06.png"/></td>
-								<td class="basket_name">Стирально-отжимные машины W</td>
-								<td class="textright"><a href="#"><img src="images/delete.png"/></a></td>
-							</tr>
-							<tr>
-								<td colspan="2" class="maker"><a href="#">Electrolux</a>, <a href="#">Швеция</a></td>
-							</tr>
-							<tr>
-								<td colspan="2" class="basket_discript">
-									Предназначены для стирки и отжима текстильных изделий. Влажность белья на выходе 50%. Корпус из крашенной стали. Фронтальная панель из нержавеющей стали для моделей W4130H; W4180H; W4240H.
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2" class="basket_back">
-									<a href="#">Вернуться к списку</a>
-								</td>
-								<td class="basket_price">
-									<a href="#">Узнать цену</a>
-								</td>
-							</tr>
+							{% endfor %}
 						</table>
 					<div class="clr"></div>	
 					<div id="seo_block">
