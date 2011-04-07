@@ -12,7 +12,7 @@
 						<table border="0" cellpadding="0" cellspacing="0" class="textleft" id="basket_prod">
 							{% for item in cart_items %}
 							<tr>
-								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="{{ item.product.modelsphoto_set.all.0.image.thumb_url }}"/></td>
+								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="{{ item.series.modelsphoto_set.all.0.image.thumb_url }}"/></td>
 								<td class="basket_name">{{ item.product.category }} {{ item.product }}</td>
 								<td class="textright"><a href="#"><img src="{{ MEDIA_URL }}images/delete.png"/></a></td>
 							</tr>
