@@ -12,20 +12,41 @@
 						<table border="0" cellpadding="0" cellspacing="0" class="textleft" id="basket_prod">
 							{% for item in cart_items %}
 							<tr>
-								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="{{ item.series.modelsphoto_set.all.0.image.thumb_url }}"/></td>
-								<td class="basket_name">{{ item.product.category }} {{ item.product }}</td>
+								<td rowspan="3" style="padding:0 15px" class="basket_img"><img height="80px" src="{{ item.product.series.modelsphoto_set.all.0.image.thumb_url }}"/></td>
+								<td class="basket_name">{{ item.product.series.category }} {{ item.product }}</td>
 								<td class="textright"><a href="#"><img src="{{ MEDIA_URL }}images/delete.png"/></a></td>
 							</tr>
+                                <form action="" method="post" class="adjustform">{% csrf_token %}
+                                    <input type="text" name="quantity" value="{{ item.quantity }}" id="quantity" size="2" />
+                                    <input type="hidden" name="item_id" value="{{ item.id }}" />
+                                    <input type="submit" name="Update" value="Обновить" style="background-image: none;"/>
+                                </form>
+                                <form action="#" method="post" class="adjustform">{% csrf_token %}
+                                    <input type="hidden" name="item_id" value="{{ item.id }}" />
+                                    <button class='remove_button' type="submit" name="Remove"><span>Удалить</span></button><br />
+                                </form>
 							<tr>
-								<td colspan="2" class="maker"><a href="#">{{ item.product.brand }}</a></td>
+								<td colspan="2" class="maker"><a href="#">{{ item.product.series.brand }}</a></td>
 							</tr>
 							<tr>
 								<td colspan="2" class="basket_discript">
-								 <p>{{ item.product.mini_html_description|safe }}</p>
+								 <p>{{ item.product.series.mini_html_description|safe }}</p>
 								</td>
 							</tr>
 							{% endfor %}
 						</table>
+                			<form method="post" action="" class='wpsc_checkout_forms'> {% csrf_token %}
+							    <h2>Пожалуйста, заполните контактную информацию:</h2>
+								<p>Области, отмеченные звёздочкой, должны быть заполненны.<br />
+								<table class='wpsc_checkout_table'>
+      							 	{{ form.as_table }}
+      							 	<tr>
+      							 		<td colspan='2'>
+       										<input class="make_purchase" type="submit" value="Сделать заказ" name="Good" alt="сделать заказ" style="background-image: none;"/>
+       									</td>
+       								</tr>
+       							</table>
+  					  		</form>
 					<div class="clr"></div>	
 					<div id="seo_block">
 						<h1>Наши преимущества</h1>
