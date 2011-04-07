@@ -29,15 +29,12 @@ from catalog.models import Series
 
 class OrderForm(forms.Form):
     name = forms.CharField(label='Имя*', error_messages={'required':'Имя обязательно для заполнения'})
-    surname = forms.CharField(required=False, label='Фамилия')
-    patronymic = forms.CharField(required=False, label='Отчество')
-    city = forms.CharField(required=False, label='Город')
-    postcode = forms.IntegerField(required=False, label='Индекс')
     phone = forms.CharField(label='Телефон*', error_messages={'required':'Телефон обязателен для заполнения'})
-    # Адрес
+    email = forms.EmailField(label='Email*', required=False, error_messages={'required':'Email обязателен для заполнения'})
+    company = forms.CharField(required=False, label='Компания')
+    city = forms.CharField(required=False, label='Город')
     address = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows':'2'}), label='Адрес')
-    # E-mail
-    email = forms.EmailField(required=False)
+    message = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows':'3'}), label='Сообщение')
 
     def as_table(self):
         "Returns this form rendered as HTML <tr>s -- excluding the <table></table>."
