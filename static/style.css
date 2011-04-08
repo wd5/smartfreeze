@@ -619,3 +619,76 @@ body{
 	font-weight: lighter;
 	text-align: center;
 }
+.wpsc_checkout_table th{
+	font-size: 12px;
+	text-align: right;
+}
+.wpsc_checkout_forms p{
+	font-size: 12px; 
+}
+.wpsc_checkout_table td{
+	padding: 2px 0;
+}
+.wpsc_checkout_table input, .wpsc_checkout_table textarea{	
+	border: 1px solid #b6b6b6;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 2px 0px 0px 5px;
+}
+input.make_purchase{
+	background: url("images/pricearrow.png") no-repeat scroll 1px 6px transparent;
+    width: 130px;
+    height: 25px;
+    color:#0783b3;
+	font-family: Georgia;
+	font-size: 13px;
+	font-style: italic;
+	font-weight: 700;
+	border: none;
+	border-color: white;
+	cursor: pointer;
+}
+input.make_purchase:hover{
+	color: #ff7200;
+	text-decoration: underline;
+}
+td.basket_back{
+    border-bottom: 1px dotted #D7D7D7;
+    font-style: italic;
+    font-weight: 700;
+    padding: 5px 0 5px 20px;
+}
+.remove_button{
+	color: white;
+	background: #ff0400;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border-color: #ff0400;
+	cursor: pointer; 
+}
+.adjustform #quantity{
+	margin: 0;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	height: 16px;
+}
+.adjustform .update{
+	margin: 0;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	height: 22px;
+	background: #0783b3;
+	border-color: #0783b3;
+	color: white;
+	cursor: pointer;
+}
