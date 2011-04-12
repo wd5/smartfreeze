@@ -28,6 +28,9 @@
 								<td>МОДЕЛИ</td>
 								{% for model in product.model_set.all  %}
 						        		<td>{{ model.name }}</td>
+                                        {% for item in model.value_set.all %}
+                                            {{ item.value }}
+                                        {% endfor %}
                                     {{ mok }}
 						    	{% endfor %}
 							</tr>
