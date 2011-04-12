@@ -23,6 +23,10 @@
 								</td>
 							</tr>
 						</table>
+                    Названия характеристик:<br>
+                        {% for feature in product.feature_set.all %}
+                            {{ feature.name }}
+                        {% endfor %}<br>
 						<table border="0" cellpadding="0" cellspacing="0" class="product_dscr_table textleft">
 							<tr class="first_row">
 								<td>МОДЕЛИ</td>
@@ -30,34 +34,9 @@
 						        		<td>{{ model.name }}</td>
                                         {% for item in model.value_set.all %}
                                             {{ item.value }}
-                                        {% endfor %}
-                                    {{ mok }}
+                                        {% endfor %}<br>
 						    	{% endfor %}
 							</tr>
-                            {% for feature in product.feature_set.all %}
-							        <tr class="features">
-										<td>{{ feature.name }}</td>
-									
-                                {% for model in product.model_set.all %}
-                                    {% for item in model.value_set.all %}
-                                        {% if item.name == feature.name %}
-                                            <td class="textcenter values">{{ item.value }}</td>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endfor %}
-                                </tr>
-                            {% endfor %}
-                            <tr class="buy">
-										<td></td>
-                                    {% for model in product.model_set.all  %}
-						        		<td>
-						        			<form method="post" action="" class="cart textcenter"> {% csrf_token %}
-									    		<input type="hidden" name="model_id" value="{{ model.id }}" id="{{ model.id }}" />
-									    		<input type="submit" value=" " class="btn"/>
-									  		</form>
-									  	</td>
-						    		{% endfor %}
-                                </tr>                      
 						</table>
 					</div>
 					{% endfor %}
