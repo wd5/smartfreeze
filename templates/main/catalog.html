@@ -37,7 +37,9 @@
 									
                                 {% for model in product.model_set.all %}
                                     {% for item in model.value_set.all %}
+                                        {% if item.name == feature.name %}
                                             <td class="textcenter values">{{ item.value }}</td>
+                                        {% endif %}
                                     {% endfor %}
                                 {% endfor %}
                                 </tr>
