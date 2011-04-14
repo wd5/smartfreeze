@@ -103,7 +103,6 @@ class Model(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['name']
         verbose_name_plural = 'Модели товара'
 
 class ModelsPhoto(models.Model):
