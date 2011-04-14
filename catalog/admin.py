@@ -32,7 +32,7 @@ class SeriesAdmin(admin.ModelAdmin):
 
     list_display_links = ('name',)
     list_per_page = 50
-    ordering = ['-category']
+    ordering = ['category']
     search_fields = ['name', 'description']
     prepopulated_fields = {'slug' : ('name',)}
 

@@ -9,6 +9,7 @@ class Section(models.Model):
     is_active = models.BooleanField(default=True)
 
     class Meta:
+        ordering = ['name']
         verbose_name_plural = 'Секции товара'
 
     def __unicode__(self):
@@ -58,6 +59,7 @@ class Brand(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['name']
         verbose_name_plural = 'Производитель'
 
     def get_absolute_url(self):
@@ -88,7 +90,7 @@ class Series(models.Model):
         return ('product-page', [str(self.slug)])
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['name']
         verbose_name_plural = 'Серии товара'
 
 class Model(models.Model):
@@ -100,6 +102,7 @@ class Model(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['name']
         verbose_name_plural = 'Модели товара'
 
 class ModelsPhoto(models.Model):
@@ -124,6 +127,7 @@ class FeaturesName(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['name']
         verbose_name_plural = 'Характеристики товара'
 
 class Feature(models.Model):
