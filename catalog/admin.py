@@ -24,15 +24,15 @@ admin.site.register(ModelsPhoto)
 
 class SeriesAdmin(admin.ModelAdmin):
     inlines = [PhotoInline, FeaturesInline, ModelsInline]
-    list_display = ('name', 'category_name', 'created_at', 'updated_at',)
+    list_display = ('name', 'category', 'created_at', 'updated_at',)
 
-    def category_name(self, obj):
-      return ("%s" % obj.category.name).upper()
-    category_name.short_description = 'category name'
-    
+#    def category_name(self, obj):
+#      return ("%s" % obj.category.name).upper()
+#    category_name.short_description = 'category name'
+
     list_display_links = ('name',)
     list_per_page = 50
-    ordering = ['-created_at']
+    ordering = ['-category']
     search_fields = ['name', 'description']
     prepopulated_fields = {'slug' : ('name',)}
 
