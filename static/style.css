@@ -552,7 +552,6 @@ body{
 }
 .pdtable_block{
 	position: relative;
-	overflow: hidden;
 	margin-bottom: 40px;
 }
 .product_dscr_table{
@@ -583,7 +582,7 @@ body{
 	text-align: center;
 }
 .product_dscr_table .cart{
-	padding: 10px 0;
+	padding: 3px 5px;
 }
 .product_dscr_table .cart .btn{
 	width: 24px;
