@@ -43,7 +43,8 @@ class Category(models.Model):
         series = Series.objects.filter(category=self)
         brands = []
         for item in series:
-            brands.append(item.brand)
+            if not item.brand in brands:
+                brands.append(item.brand)
         return brands
 
 def validate_even(value):

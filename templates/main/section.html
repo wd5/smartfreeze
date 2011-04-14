@@ -21,7 +21,11 @@
 							</div>
 							<div class="cats_prew_marks">
 								{% for brand in cat.get_brands %}
-							        <a href="{{ cat.get_absolute_url }}{{ brand.get_absolute_url }}">{{ brand.name }}</a> 
+                                    {% if forloop.last %}
+                                        <a href="{{ cat.get_absolute_url }}{{ brand.get_absolute_url }}">{{ brand.name }}</a>
+                                    {% else %}
+                                        <a href="{{ cat.get_absolute_url }}{{ brand.get_absolute_url }}">{{ brand.name }}</a>,
+                                    {% endif %}
 							    {% endfor %}
 							</div>
 						</div>
