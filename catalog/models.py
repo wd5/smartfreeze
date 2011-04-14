@@ -31,7 +31,7 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['name']
         verbose_name_plural = 'Категории товара'
 
     @models.permalink
