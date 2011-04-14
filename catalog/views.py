@@ -4,7 +4,7 @@ from django.utils import simplejson
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core import urlresolvers, serializers
 from django.template import RequestContext
-from catalog.models import Category, Series, Section, Feature, FeaturesName
+from catalog.models import Category, Series, Section, Feature, FeaturesName, Brand
 from catalog.forms import ProductAddToCartForm
 from django.http import HttpResponseRedirect, HttpResponse
 from cart import cart
@@ -27,7 +27,10 @@ def show_category(request, category_slug):
     return render_to_response("main/catalog.html", locals(), context_instance=RequestContext(request))
 
 def show_category_brand(request, category_slug, brand_slug):
-    pass
+    category = Category.objects.get(slug=category_slug)
+    brand = Brand.objects.get(slug=brand_slug)
+    products = Series.objects.filter(category=category, brand=brand)
+    return render_to_response("main/catalog.html", locals(), context_instance=RequestContext(request))
 
 def show_section(request, section_slug):
     section = Section.objects.get(slug=section_slug)
