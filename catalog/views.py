@@ -53,7 +53,8 @@ def all_goods(request):
     products = Series.objects.all()
     return render_to_response("main/catalog.html", locals(), context_instance=RequestContext(request))
 
-def search(request, search_world):
+def search(request):
+    search_world = request.GET['s']
     products = Series.objects.filter(Q(name__icontains=search_world) | Q(mini_html_description__icontains=search_world) | Q(brand__name__icontains=search_world))
     return render_to_response("main/catalog.html", locals(), context_instance=RequestContext(request))
 
