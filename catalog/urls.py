@@ -8,8 +8,7 @@ urlpatterns = patterns('',
                       url(r'^cat/(?P<category_slug>[-\w]+)/$', 'catalog.views.show_category', name="catalog-page"),
                       url(r'^cat/(?P<category_slug>[-\w]+)/(?P<brand_slug>[-\w]+)/$', 'catalog.views.show_category_brand', name="catagory-brand-page"),
                       url(r'^product/(?P<product_slug>[-\w]+)/$', 'catalog.views.show_product', name="product-page"),
-                      url(r'^about$', 'catalog.views.about', name="about-page"),
-                      url(r'^test$', 'catalog.views.test', name="test-page"),
+                      url(r'^about/$', 'catalog.views.about', name="about-page"),
                       url(r'^test_json/(?P<series_id>[-\w]+)/$', 'catalog.views.test_json', name="test-json"),
-                      url(r'^delivery$', 'catalog.views.delivery', name="delivery-page"),)
+                      url(r'^delivery/$', 'catalog.views.delivery', name="delivery-page"),)
 

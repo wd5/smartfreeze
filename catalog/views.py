@@ -17,7 +17,8 @@ def index(request):
     return render_to_response("main/index.html", locals(), context_instance=RequestContext(request))
 
 def cats(request):
-    return render_to_response("main/cats.html", locals(), context_instance=RequestContext(request))
+    cats = Section.objects.all()
+    return render_to_response("main/section.html", locals(), context_instance=RequestContext(request))
 
 def show_category(request, category_slug):
     category = Category.objects.get(slug=category_slug)
@@ -55,16 +56,9 @@ def about(request):
     page_title = "О нас"
     return render_to_response('main/about.html', locals(), context_instance=RequestContext(request))
 
-def blog(request):
-    page_title = "Блог"
-    return render_to_response('main/blog.html', locals(), context_instance=RequestContext(request))
-
 def delivery(request):
     page_title = "Доставка и оплата"
     return render_to_response('main/delivery.html', locals(), context_instance=RequestContext(request))
-
-def test(request):
-    return render_to_response('test.html', locals(), context_instance=RequestContext(request))
 
 def test_json(request, series_id):
     series = Series.objects.get(id=series_id)
