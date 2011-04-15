@@ -25,39 +25,29 @@
 						<table border="0" cellpadding="0" cellspacing="0" class="product_dscr_table textleft">
 							<tr class="first_row">
 								<td>МОДЕЛИ</td>
-								{% for model in product.model_set.all  %}
-						        		<td>{{ model.name }}</td>
-						    	{% endfor %}
+								{% for feature in product.feature_set.all %}
+                            		<td>{{ feature.name }}</td>
+                       	 		{% endfor %}
+                       	 		<td></td>
 							</tr>
-                            {% for feature in product.feature_set.all %}
-							        <tr class="features">
-										<td>{{ feature.name }}</td>
-									
-                                {% for model in product.model_set.all %}
-                                    {% for item in model.value_set.all %}
-                                        {% if item.name == feature.name %}
+								{% for model in product.model_set.all  %}
+									<tr class="features">
+						        		<td style="font-weight:bold">{{ model.name }}</td>
+                                        {% for item in model.value_set.all %}
                                             <td class="textcenter values">{{ item.value }}</td>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endfor %}
-                                </tr>
-                            {% endfor %}
-
-							        <tr class="buy">
-										<td></td>
-                                    {% for model in product.model_set.all  %}
-						        		<td>
+                                        {% endfor %}
+                                        <td class="values"> 
 						        			<form method="post" action="" class="cart textcenter"> {% csrf_token %}
 									    		<input type="hidden" name="model_id" value="{{ model.id }}" id="{{ model.id }}" />
 									    		<input type="submit" value=" " class="btn"/>
 									  		</form>
 									  	</td>
-						    		{% endfor %}
-                                </tr>
+                                    </tr>
+						    	{% endfor %}
 						</table>
 					</div>
 					<script type="text/javascript">
-						jQuery.fn.sizetable();
+						//jQuery.fn.sizetable();
 					</script>
 					<div id="seo_block">
 						<h1>{{ product.name }}</h1>

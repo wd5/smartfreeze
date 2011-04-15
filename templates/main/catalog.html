@@ -30,13 +30,15 @@
 								{% for feature in product.feature_set.all %}
                             		<td>{{ feature.name }}</td>
                        	 		{% endfor %}
+                       	 		<td></td>
+							</tr>
 								{% for model in product.model_set.all  %}
 									<tr class="features">
-						        		<td>{{ model.name }}</td>
+						        		<td style="font-weight:bold">{{ model.name }}</td>
                                         {% for item in model.value_set.all %}
                                             <td class="textcenter values">{{ item.value }}</td>
                                         {% endfor %}
-                                        <td>
+                                        <td class="values"> 
 						        			<form method="post" action="" class="cart textcenter"> {% csrf_token %}
 									    		<input type="hidden" name="model_id" value="{{ model.id }}" id="{{ model.id }}" />
 									    		<input type="submit" value=" " class="btn"/>
@@ -44,7 +46,7 @@
 									  	</td>
                                     </tr>
 						    	{% endfor %}
-							</tr>
+						    	
 						</table>
 					</div>
 					{% endfor %}

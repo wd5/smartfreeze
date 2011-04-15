@@ -38,25 +38,25 @@ body{
 	background: white;
 }
 #wrapper{
-	margin: 0 auto;
-	width:990px;
+	margin: 0 5%;
+	width:90%;
 	background: white;
 	color: #666666;
 }
 #header{
+	min-width: 900px;
 }
 #left_head{
-	width:250px;
+	width:20%;
 	height: 180px;
 }
 #logotype{
 	margin: 40px 0 0 25px;
 }
 #right_head{
-	padding: 2px 0 0 59px;
+	width: 80%;
 }
 #basket_box{
-	width:600px;
 	height: 26px;
 	background: #0783b3;
 	-webkit-border-radius: 4px;
@@ -66,8 +66,6 @@ body{
 	font-size: 100%;
 	vertical-align: baseline;
 	text-align: center;
-}
-#basket_box{
 	font-size: 13px;
 	line-height: 26px;
 	font-weight: lighter;
@@ -80,7 +78,6 @@ body{
 	margin-top: 5px;
 }
 #basket_box p{
-	margin-left:150px;
 }
 /*#basket_box span{
 	overflow: hidden;
@@ -101,7 +98,7 @@ body{
 
 }
 #head_info .info{
-	width: 380px;
+	width: 70%;
 	font-family: Georgia;
 	font-style: italic;
 	color: #0783b3;
@@ -127,19 +124,19 @@ body{
 	font-family: Georgia;
 	font-style: italic;
 	font-weight: bold;
+	width: 100%;
 }
-#menu li{
-	display: inline;
-	list-style: none;
-	padding-left: 40px;
+#menu td{
+	
+	text-align: center;
 }
-#menu li a{
+#menu td a{
 	font-family: Georgia;
 	color:#666666;
 	font-size: 20px;
 	text-decoration: none;
 }
-#menu li a:hover{
+#menu td a:hover{
 	color: #ff7200;
 }
 #searchform{
@@ -180,9 +177,10 @@ body{
 #page{
  clear: both;
  padding-top: 40px;
+ min-width: 900px;
 }
 #sidebar{
-	width: 235px;
+	width: 20%;
 }
 #sidebar_menu{
 	padding: 0 0 0 20px;
@@ -227,7 +225,7 @@ body{
 	text-decoration: underline;
 }
 #main{
-	width: 755px;
+	width: 80%;
 }
 #special_price{
 	text-align: center;
@@ -558,6 +556,7 @@ body{
 	position: relative;
 	border-bottom: 1px dotted #b6b6b6;
 	margin-bottom: 1px;
+	width: 100%;
 }
 .product_dscr_table .dscr{
 	padding-bottom: 28px;
