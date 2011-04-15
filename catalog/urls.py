@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
                       url(r'^$', 'catalog.views.index', name="main-page"),
+                      url(r'^search/(?P<search_world>[-\w]+)/$', 'catalog.views.search', name="search-page"),
                       url(r'^cat/$', 'catalog.views.cats', name="categories-main-page"),
                       url(r'^cat/all-goods/$', 'catalog.views.all_goods', name="all-goods"),
                       url(r'^section/(?P<section_slug>[-\w]+)/$', 'catalog.views.show_section', name="section-page"),

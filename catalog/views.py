@@ -1,5 +1,6 @@
           # -*- coding: utf-8 -*-
 import urllib
+from django.db.models.query_utils import Q
 from django.utils import simplejson
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core import urlresolvers, serializers
@@ -50,6 +51,10 @@ def all_goods(request):
         url = urlresolvers.reverse('show_cart')
         return HttpResponseRedirect(url)
     products = Series.objects.all()
+    return render_to_response("main/catalog.html", locals(), context_instance=RequestContext(request))
+
+def search(request, search_world):
+    products = Series.objects.filter(Q(name__icontains=search_world) | Q(mini_html_description__icontains=search_world) | Q(brand__name__icontains=search_world))
     return render_to_response("main/catalog.html", locals(), context_instance=RequestContext(request))
 
 def about(request):
