@@ -7,6 +7,7 @@ class Section(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
     is_active = models.BooleanField(default=True)
+    image = ThumbnailImageField(upload_to='sections_image', thumb_width=200, thumb_height=200, completion="resized" )
 
     class Meta:
         ordering = ['name']

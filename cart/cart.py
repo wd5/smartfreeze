@@ -139,48 +139,48 @@ def save_client(request, form):
     ci.cart = cart
 
     ci.name = form.cleaned_data['name']
-    ci.surname = form.cleaned_data['surname']
-    ci.patronymic = form.cleaned_data['patronymic']
+#    ci.surname = form.cleaned_data['surname']
+#    ci.patronymic = form.cleaned_data['patronymic']
     ci.city = form.cleaned_data['city']
-    ci.postcode = form.cleaned_data['postcode']
+#    ci.postcode = form.cleaned_data['postcode']
     ci.phone = form.cleaned_data['phone']
     ci.address = form.cleaned_data['address']
     ci.email = form.cleaned_data['email']
-    ci.subtotal = subtotal_class.subtotal()
-    ci.discount = subtotal_class.discount
+#    ci.subtotal = subtotal_class.subtotal()
+#    ci.discount = subtotal_class.discount
     ci.referrer = request.COOKIES.get('REFERRER', None)
     ci.save()
     # Обновляю количество на складе
-    products = CartProduct.objects.filter(cartitem=cart)
-    for product in products:
-        store_product = Product.objects.get(name=product.product)
-        store_product.quantity -= product.quantity
-        store_product.save()
+#    products = CartProduct.objects.filter(cartitem=cart)
+#    for product in products:
+#        store_product = Product.objects.get(name=product.product)
+#        store_product.quantity -= product.quantity
+#        store_product.save()
 
-def send_admin_email(request, cart_items, form, cart_subtotal, discount):
+def send_admin_email(request, cart_items, form):
     products_for_email = ""
     for item in cart_items:
         products_for_email += u"%s:%s шт  http://my-spy.ru%s\n" % (item.product.name,
-                                          item.quantity, item.product.get_absolute_url())
+                                          item.quantity, item.product)
     t = threading.Thread(target= send_mail, args=[
-        u'Заказ от %s %s' % (form.cleaned_data['name'], form.cleaned_data['surname'] ),
-        u'Имя: %s %s %s \nГород: %s\nИндекс: %s\nТелефон: %s\nАдрес: %s\nEmail: %s\n\n%s\nВсего на сумму: %s руб\nСкидка: %s руб\n\nПришел с: %s'
-        % (form.cleaned_data['surname'], form.cleaned_data['name'], form.cleaned_data['patronymic'],
-        form.cleaned_data['city'], form.cleaned_data['postcode'], form.cleaned_data['phone'],
-        form.cleaned_data['address'], form.cleaned_data['email'], products_for_email, cart_subtotal, discount, request.COOKIES.get('REFERRER', None) ),
+        u'Заказ от %s' % form.cleaned_data['name'],
+        u'Имя: %s \nГород: %s\nТелефон: %s\nАдрес: %s\nEmail: %s\n\n%s\n\nПришел с: %s'
+        % (form.cleaned_data['name'],
+        form.cleaned_data['city'], form.cleaned_data['phone'],
+        form.cleaned_data['address'], form.cleaned_data['email'], products_for_email, request.COOKIES.get('REFERRER', None) ),
         settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER], 'fail_silently=False'])
     t.setDaemon(True)
     t.start()
 
-def send_client_email(cart_items, form, cart_subtotal):
+def send_client_email(cart_items, form):
     products_for_email = ""
     for item in cart_items:
         products_for_email += u"%s:%s шт  http://my-spy.ru%s\n" % (item.product.name,
-                                          item.quantity, item.product.get_absolute_url())
+                                          item.quantity, item.product.name)
     t = threading.Thread(target= send_mail, args=[
         u'Ваш заказ от my-spy',
-        u'Здравствуйте %s,\n\nВы оформили у нас заказ на:\n%s\nВсего на сумму: %s руб\n\nВ ближайшее время наш менеджер с вами свяжется.\nС Уважением, my-spy.ru' %
-        (form.cleaned_data['name'], products_for_email, cart_subtotal ),
+        u'Здравствуйте %s,\n\nВы оформили у нас заказ на:\n%s\n\nВ ближайшее время наш менеджер с вами свяжется.\nС Уважением, my-spy.ru' %
+        (form.cleaned_data['name'], products_for_email),
         settings.EMAIL_HOST_USER, [form.cleaned_data['email']], 'fail_silently=False'])
     t.setDaemon(True)
     t.start()

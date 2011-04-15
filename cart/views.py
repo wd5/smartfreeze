@@ -9,7 +9,7 @@ def show_cart(request, template_name="cart/cart.html"):
     if request.method == 'POST':
         subtotal_class = cart.Subtotal(request)
         cart_items = cart.get_cart_items(request)
-        cart_subtotal = subtotal_class.subtotal()
+#        cart_subtotal = subtotal_class.subtotal()
         discount = subtotal_class.discount
         postdata = request.POST.copy()
         form = OrderForm(request.POST)
@@ -28,10 +28,10 @@ def show_cart(request, template_name="cart/cart.html"):
             if SEND_SMS:
                 cart.send_sms(cart_items, form)
             # Отправляем админу email
-            cart.send_admin_email(request, cart_items, form, cart_subtotal, discount)
+            cart.send_admin_email(request, cart_items, form)
             if form.cleaned_data['email']:
                 # Отправляем email клиенту
-                cart.send_client_email(cart_items, form, cart_subtotal)
+                cart.send_client_email(cart_items, form)
     else:
         form = OrderForm()
 

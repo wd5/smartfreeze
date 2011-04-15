@@ -9,6 +9,7 @@
 				<!--content begin-->
 				<div id="content">
 					<h2 class="textleft">Ваша корзина</h2>
+                {% if cart_items %}
 						<table border="0" cellpadding="0" cellspacing="0" class="textleft" id="basket_prod">
 							{% for item in cart_items %}
 							<tr>
@@ -51,7 +52,12 @@
        								</tr>
        							</table>
   					  		</form>
-					<div class="clr"></div>	
+					<div class="clr"></div>
+                {% else %} {% if is_order %}
+                    Спасибо за заказ, в ближайшее время мы с вами свяжемся.
+                {% else %}
+                    Ваша корзина пуста.
+                {% endif %}{% endif %}
 					<div id="seo_block">
 						<h1>Наши преимущества</h1>
 						<h4>Мы предлагаем комплексное оснащение ресторанов, кафе, баров, столовых.</h4>
