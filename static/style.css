@@ -100,7 +100,6 @@ body{
 #head_info .info{
 	width: 70%;
 	font-family: Georgia;
-	font-style: italic;
 	color: #0783b3;
 	font-size: 13px;
 	text-align: center;
@@ -110,10 +109,9 @@ body{
 #head_info .phone{
 	padding: 20px 0;
 	font-family: Georgia;
-	font-style: italic;
 	font-weight: bold;
 	font-size: 13px;
-	color: #b1b1b1;
+	color: #666;
 }
 #head_info .phone span{
 	font-family: Georgia;
@@ -122,7 +120,6 @@ body{
 #menu{
 	clear: both;
 	font-family: Georgia;
-	font-style: italic;
 	font-weight: bold;
 	width: 100%;
 }
@@ -155,7 +152,6 @@ body{
 	border: 1px solid #b1b1b1;
 	border-right: none;
 	padding-left: 15px;
-	font-style: italic;
 	color: #b1b1b1;
 	outline: none;
 }
@@ -189,7 +185,6 @@ body{
 	margin: 0 0 20px 15px;
 	color:#278cbd;
 	font-family: Georgia;
-	font-style: italic;
 	font-weight: 700;
 	font-size: 20px;
 }
@@ -238,7 +233,6 @@ body{
 	margin: 0 0 20px 15px;
 	color:#278cbd;
 	font-family: Georgia;
-	font-style: italic;
 	font-weight: 700;
 	font-size: 24px;
 }
@@ -246,7 +240,6 @@ body{
 	margin: 0 0 20px 15px;
 	color:#278cbd;
 	font-family: Georgia;
-	font-style: italic;
 	font-weight: 700;
 	font-size: 20px;
 }
@@ -258,12 +251,13 @@ body{
 }
 #special_slider_block{
 	width:715px;
-	height: 220px;
+	height: 240px;
 	background: url('images/sb_gradient.jpg') top left repeat-x;
+	margin: 0 auto;
 }
 #special_slider_left, #special_slider_right{
 	width:60px;
-	height:220px;
+	height:240px;
 	position: relative;
 }
 #special_slider_left{
@@ -295,21 +289,21 @@ body{
 }
 #special_slider_mid{
 	width:595px;
-	height: 220px;
+	height: 240px;
 	overflow:  hidden;
 	position: relative;
 }
 #special_slider_line{
-	height: 220px;
+	height: 240px;
 	position: absolute;
 	left:0;
 }
 #special_slider_mid .special_slider_product{
-	height: 220px;
+	height: 240px;
 	width: 198px;
 }
 #special_slider_mid .special_slider_product_name{
-	height: 35px;
+	height: 55px;
 	padding-top: 5px;
 	color: white;
 	font-size:12px;
@@ -329,7 +323,6 @@ body{
 #special_slider_mid .special_slider_product_price{
 	color:white;
 	font-family: Georgia;
-	font-style: italic;
 	font-weight: 700;
 	font-size:18px;
 	padding-top: 10px;
@@ -341,7 +334,7 @@ body{
 }
 #best_sellers .best_product{
 	width:198px;
-	height: 240px;
+	height: 260px;
 	text-align: center;
 	border-bottom: 1px dotted #d7d7d7; 
 	margin-bottom: 15px;
@@ -349,7 +342,7 @@ body{
 #best_sellers .best_product .product_name{
 	margin: 0 15px;
 	width: 176px;
-	height: 30px;
+	height: 50px;
 	position: relative;
 	font-size: 12px;
 	color: #1885b8;
@@ -402,7 +395,6 @@ body{
 	margin-right: 50px;
 	color:#1885b8;
 	font-family: Georgia;
-	font-style: italic;
 	font-weight: 700;
 	font-size:18px;
 	line-height: 28px;
@@ -466,7 +458,6 @@ body{
 	width: 165px;
 	color: white;
 	font-family: Georgia;
-	font-style: italic;
 	font-weight: 700;
 	font-size: 13px;
 	line-height: 13px;
@@ -513,7 +504,6 @@ body{
 .basket_back, .basket_price{
 	padding: 5px 0 5px 20px;
 	border-bottom: 1px dotted #d7d7d7;	
-	font-style: italic;
 	font-weight: 700;	
 }
 .basket_back a, .basket_price a{
@@ -636,12 +626,11 @@ body{
 }
 input.make_purchase{
 	background: url("images/pricearrow.png") no-repeat scroll 1px 6px transparent;
-    width: 130px;
+    width: 150px;
     height: 25px;
     color:#0783b3;
 	font-family: Georgia;
 	font-size: 13px;
-	font-style: italic;
 	font-weight: 700;
 	border: none;
 	border-color: white;
@@ -653,7 +642,6 @@ input.make_purchase:hover{
 }
 td.basket_back{
     border-bottom: 1px dotted #D7D7D7;
-    font-style: italic;
     font-weight: 700;
     padding: 5px 0 5px 20px;
 }
