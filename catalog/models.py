@@ -144,4 +144,4 @@ class Value(models.Model):
     name = models.ForeignKey(FeaturesName)
 
     def __unicode__(self):
-        return unicode(self.name)
+        return unicode(self.value)
