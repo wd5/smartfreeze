@@ -21,7 +21,7 @@
 										<div class="special_slider_product_name">
 											<a href=' {{ item.get_absolute_url }}'>{{ item.category }} {{ item.name }} {{ item.brand }}</a>
 										</div>
-										<img src="{{ item.modelsphoto_set.all.0.image.thumb_url }}" class="special_slider_product_image"/>
+										<a href=' {{ item.get_absolute_url }}'><img src="{{ item.modelsphoto_set.all.0.image.thumb_url }}" class="special_slider_product_image"/></a>
 										<div class="special_slider_product_price">
 											{{ item.model_set.all.0.price }} руб.
 										</div>
@@ -41,7 +41,7 @@
 							<div class="product_name">
 								<a href="{{ item.get_absolute_url }}">{{ item.category }} {{ item.name }} {{ item.brand }}</a>
 							</div>
-							<img src="{{ item.modelsphoto_set.all.0.image.thumb_url }}" class="product_image"/>
+							<a href="{{ item.get_absolute_url }}"><img src="{{ item.modelsphoto_set.all.0.image.thumb_url }}" class="product_image"/></a>
 							<div class="product_price">
                             <form method="post" action="" class="cart"> {% csrf_token %}
                                 <input type="hidden" name="product_slug" value="{{ item.slug }}" id="{{ item.id }}" />

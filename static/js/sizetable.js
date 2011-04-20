@@ -1,37 +1,52 @@
 (function($){
 	$.fn.sizetable = function() {
 		$(document).ready(function(){
-			$('.product_dscr_table').each(function(){
-				var $this = $(this);
-				if($this.width()>715){
-					$this.append('<tr class="clone_first_row first_row"></tr>');
-					$this.find('.features').each(function(){
-						$this.append('<tr class="clone_feature features"></tr>');
-					});
-					$this.append('<tr class="clone_buy buy"><td></td></tr>');
-					$this.find('.first_row').not('.clone_first_row').find('td:first').clone().appendTo($this.find('.clone_first_row'));
-					$this.find('.features').not('.clone_first_row').each(function(){
-						var i = $(this).index();
-						$(this).find('td:first').clone().appendTo($this.find('.clone_feature').eq(i-1));
-					});
-					//$this.append('<tr><td class="dotted_border_bottom" style="padding-bottom:10px;" colspan="12"></td></tr>');
-					while($this.width()>715){
-						var $first = $this.find('.clone_first_row td:first');
-						var $second = $this.find('.clone_buy td:first');
-						$this.find('.first_row').not('.clone_first_row').find('td:last').prependTo($this.find('.clone_first_row'));
-						$first.prependTo($this.find('.clone_first_row'));
-						$this.find('.features').not('.clone_feature').each(function(){
-							var i = $(this).index();
-							var $fird = $this.find('.clone_feature').eq(i-1).find('td:first');
-							$(this).find('td:last').prependTo($this.find('.clone_feature').eq(i-1));
-							$fird.prependTo($this.find('.clone_feature').eq(i-1));
-						});
-						$this.find('.buy').not('.clone_buy').find('td:last').prependTo($this.find('.clone_buy'));
-						$second.prependTo($this.find('.clone_buy'));
-					}
-				}
-			});
+		setResize();
+		$(window).bind('resize',setResize);			
 		});
+		function setResize(){
+			var best_areawidth = $('#best_sellers').width();
+			//количество товара 1 строку			
+			var col_inline = (best_areawidth-(best_areawidth%198))/198;
+			var col_real = $('.best_product').size();
+			if(col_real<col_inline){
+				col_inline = col_real;
+				var margin1 = (best_areawidth-(col_inline*198))/(col_inline*2)-1;
+				$('.best_product').css({margin:'10px '+margin1+'px'});
+			}
+			else{
+				var margin1 = (best_areawidth-(col_inline*198))/(col_inline*2)-1;
+				$('.best_product').css({margin:'10px '+margin1+'px'});
+				var lost_col = col_real%col_inline;
+				var margin_lost = (best_areawidth-(lost_col*198))/(lost_col*2)-1;
+				var i;
+				for(i=1; i<lost_col+1; i=i+1){
+					//alert(col_real);
+					$('.best_product').eq(col_real-i).css({margin:'0 '+margin_lost+'px'});
+				}
+			}
+			
+			var best_areawidth1 = $('#content').width();
+			
+			//количество товара 1 строку			
+			var col_inline1 = (best_areawidth1-(best_areawidth1%173))/173;
+			var col_real1 = $('.cats_prew_block').size();
+			if(col_real1<col_inline1){
+				col_inline1 = col_real1;
+				var margin2 = (best_areawidth1-(col_inline1*173))/(col_inline1*2)-1;
+				$('.cats_prew_block').css({margin:'10px '+margin2+'px'});
+			}
+			else{
+				var margin2 = (best_areawidth1-(col_inline1*173))/(col_inline1*2)-1;
+				$('.cats_prew_block').css({margin:'10px '+margin2+'px'});
+				var lost_col1 = col_real1%col_inline1;
+				var margin_lost1 = (best_areawidth1-(lost_col1*173))/(lost_col1*2)-1;
+				var i1;
+				for(i1=1; i1<lost_col1+1; i1=i1+1){
+					//alert(col_real);
+					$('.cats_prew_block').eq(col_real1-i1).css({margin:'0 '+margin_lost1+'px'});
+				}
+			}
+		}
 	}	
 })(jQuery);
-

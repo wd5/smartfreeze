@@ -13,7 +13,7 @@
 						<table border="0" cellpadding="0" cellspacing="0" class="product_dscr_table textleft">
 							<tr>
 								<td class="img_block">
-										<img src="{{ product.modelsphoto_set.all.0.image.thumb_url }}"/>
+										<a href="{{ product.get_absolute_url }}"><img src="{{ product.modelsphoto_set.all.0.image.thumb_url }}"/></a>
 								</td>
 								<td colspan="5" class="dscr">
 									<a href="{{ product.get_absolute_url }}"><h4> {{ category.name }} {{ product.name }}</h4></a>
@@ -50,9 +50,7 @@
 						</table>
 					</div>
 					{% endfor %}
-					<script type="text/javascript">
-						//jQuery.fn.sizetable();
-					</script>
+					
 					<div id="seo_block">
 						<h1>Наши преимущества</h1>
 						<h4>Мы предлагаем комплексное оснащение ресторанов, кафе, баров, столовых.</h4>

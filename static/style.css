@@ -101,10 +101,10 @@ body{
 	width: 70%;
 	font-family: Georgia;
 	color: #0783b3;
-	font-size: 13px;
+	font-size: 16px;
 	text-align: center;
 	padding: 20px 0;
-	line-height: 13px;
+	line-height: 16px;
 }
 #head_info .phone{
 	padding: 20px 0;
@@ -112,6 +112,9 @@ body{
 	font-weight: bold;
 	font-size: 13px;
 	color: #666;
+}
+#head_info .phone p{
+	text-align: right;
 }
 #head_info .phone span{
 	font-family: Georgia;
@@ -122,6 +125,7 @@ body{
 	font-family: Georgia;
 	font-weight: bold;
 	width: 100%;
+	margin-top: 30px;
 }
 #menu td{
 	
@@ -135,13 +139,13 @@ body{
 }
 #menu td a:hover{
 	color: #ff7200;
+	text-decoration: underline;
 }
 #searchform{
-	margin-top:30px;
 }
 #searchform #s{
 	height:25px;
-	width:535px;	
+	min-width:180px;	
 	padding: 0;
 	-webkit-border-top-left-radius: 4px;
 	-webkit-border-bottom-left-radius: 4px;
@@ -526,9 +530,10 @@ body{
 	width: 120px;
 	vertical-align: top;
 }
-.product_dscr_table img{
-	width: 200px;
-	margin: 0 10px;
+.product_dscr_table img {
+    margin: 0 10px;
+    max-height: 200px;
+    max-width: 200px;
 }
 #content .product_dscr_table h4{
 	color: #ff7200;
@@ -536,7 +541,6 @@ body{
 	font-size: 15px;
 }
 #content .product_dscr_table h4:hover{
-	text-decoration: underline;
 }
 .pdtable_block{
 	position: relative;
@@ -677,4 +681,8 @@ td.basket_back{
 	border-color: #0783b3;
 	color: white;
 	cursor: pointer;
+}
+.product_brand{
+	color: #0783b3;
+	font-size: 12px;
 }
