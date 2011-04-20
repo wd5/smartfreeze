@@ -145,6 +145,3 @@ class Value(models.Model):
 
     def __unicode__(self):
         return unicode(self.name)
-
-    class Meta:
-        ordering = ['model']
