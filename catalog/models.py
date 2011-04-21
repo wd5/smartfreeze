@@ -2,6 +2,7 @@
 from django.db import models
 from catalog.fields import ThumbnailImageField
 from django.core.exceptions import ValidationError
+from tinymce import models as tinymce_models
 
 class Section(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -72,8 +73,9 @@ class Series(models.Model):
     brand = models.ForeignKey(Brand, verbose_name='Производитель')
     name = models.CharField(max_length=255, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, verbose_name='Ссылка')
-    mini_html_description = models.TextField(validators=[validate_even], help_text='Максимальное количество символов: 140.',
-                                        verbose_name='Мини описание в HTML')
+    mini_html_description = tinymce_models.HTMLField()
+#    mini_html_description = models.TextField(validators=[validate_even], help_text='Максимальное количество символов: 140.',
+#                                        verbose_name='Мини описание в HTML')
     html_description = models.TextField(blank=True, verbose_name='Описание', help_text='Описание в HTML')
     # Метаданные товара
     is_active = models.BooleanField(default=True, verbose_name='Активный')

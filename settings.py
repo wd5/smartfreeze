@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'smartfreeze.catalog',
     'smartfreeze.cart',
+    'tinymce',
 )
 
 try:
