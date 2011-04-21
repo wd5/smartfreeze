@@ -71,7 +71,7 @@ class Brand(models.Model):
 class Series(models.Model):
     category = models.ForeignKey(Category, verbose_name='Категория')
     brand = models.ForeignKey(Brand, verbose_name='Производитель')
-    name = models.CharField(max_length=255, unique=True, verbose_name='Название')
+    name = models.CharField(max_length=255, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, verbose_name='Ссылка')
     mini_html_description = tinymce_models.HTMLField()
 #    mini_html_description = models.TextField(validators=[validate_even], help_text='Максимальное количество символов: 140.',
