@@ -554,6 +554,10 @@ body{
 }
 .product_dscr_table .dscr{
 	padding-bottom: 28px;
+	font-size: 11px;
+}
+.product_dscr_table .dscr ul{
+	list-style-position:inside;
 }
 .product_dscr_table .dscr a{
 	color: #0783b3;
