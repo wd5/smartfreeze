@@ -594,6 +594,7 @@ body{
 .product_dscr_table .features td{
 	font-size: 12px;
 	padding: 3px 5px;
+	border-bottom: 1px dotted #b6b6b6;
 }
 .product_dscr_table .features .values{
 	border-left: 1px solid #b6b6b6;
