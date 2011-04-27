@@ -43,14 +43,7 @@
 								<a href="{{ item.get_absolute_url }}">{{ item.category }} {{ item.name }} {{ item.brand }}</a>
 							</div>
 							<a href="{{ item.get_absolute_url }}"><img src="{{ item.modelsphoto_set.all.0.image.thumb_url }}" class="product_image"/></a>
-							<div class="product_price">
-                            <form method="post" action="" class="cart"> {% csrf_token %}
-                                <input type="hidden" name="product_slug" value="{{ item.slug }}" id="{{ item.id }}" />
-                                <input class="buy_button" type="submit" name='submit'  value=" " />
-                            </form>
-								<span>В корзину</span>
-							</div>
-						</div>	
+						</div>
 						{% endfor %}						
 						<div class="clr"></div>												
 					</div>
