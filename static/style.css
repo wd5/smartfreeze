@@ -99,12 +99,13 @@ body{
 }
 #head_info .info{
 	width: 70%;
-	font-family: Georgia;
 	color: #0783b3;
-	font-size: 16px;
+	font-size: 14px;
 	text-align: center;
 	padding: 20px 0;
 	line-height: 16px;
+	font-style: italic;
+	font-weight: bold;
 }
 #head_info .phone{
 	padding: 20px 0;

@@ -3,85 +3,87 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html> 
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-	<link href="{{ MEDIA_URL }}style.css" type="text/css" rel="stylesheet" />
-	<!--[if lt IE 9]>
-		<script src="">http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
-	<![endif]-->
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/circle.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/sizetable.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#sidebar_menu li ul li').each(function(){
-					if($(this).hasClass('active')){
-						$(this).parents('li').addClass('active');
-					}
-			});
-		});
-	</script>
+   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+   <link href="{{ MEDIA_URL }}style.css" type="text/css" rel="stylesheet" />
+   <!--[if lt IE 9]>
+       <script src="">http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+   <![endif]-->
+   <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.4.4.min.js"></script>
+   <script type="text/javascript" src="{{ MEDIA_URL }}js/circle.js"></script>
+   <script type="text/javascript" src="{{ MEDIA_URL }}js/sizetable.js"></script>
+   <script type="text/javascript">
+       $(document).ready(function(){
+           $('#sidebar_menu li ul li').each(function(){
+                   if($(this).hasClass('active')){
+                       $(this).parents('li').addClass('active');
+                   }
+           });
+       });
+   </script>
 </head>
 <body>
-	<script type="text/javascript">
-		jQuery.fn.circle();
-		jQuery.fn.sizetable();
-	</script>
-	<div id="wrapper">
-		<div id="header">
-			<div id="left_head" class="alignleft">
-				<a href="/"><img src="{{ MEDIA_URL }}images/logo.png" class="alignleft" id="logotype"/></a>
-			</div>
-			<div id="right_head" class="alignleft">
-				<div id="head_info">
-                     {% cart_box request %}
-					<div class="info alignleft">
-						Оборудование для комплексного оснащения магазинов,<br/>
-							ресторанов, баров, столовых и других форматов<br/>
-						 предприятий общественного питания,<br/>
-						 пищевых производств, отелей и прачечных.	<br/>				
- 					</div>
- 					<div class="phone alignleft">
- 						Наши контакты:<br/>
- 						+7&nbsp;(495)&nbsp;<span>729-23-83</span><br/><br/>
- 						sales@smartfreeze.ru<br/>
- 						skype: bizzzmaker<br/>
- 						icq: 583812300
- 					</div>
- 					<div class="clr"></div>
-				</div>
-				<table border="0" cellpadding="0" cellspacing="0" id="menu">
-					<tr>
-						<td><a href="/">Главная</a></td>
-						<td><a href="/cat/">Каталог</a></td>
-						<td><a href="/delivery/">Доставка и оплата</a></td>
-						<td><a href="/about/">О нас</a></td>
-						<td stile="padding-left:20px;">
-							<form id="searchform" class="alignright" method="get" action="/search/">
-								<div class="alignleft">
-									<input type="text" onfocus="if(this.value=='Введите слово для поиска...') this.value='';" onblur="if(this.value=='') this.value='Введите слово для поиска...';" value="Введите слово для поиска..." name="s" id="s"/>
-								</div>
-									<input class="go" type="submit" value="" />
-							</form>
-						</td>
-					</tr>
-				</table>
-				
-			</div>
-			<div class="clr"></div>
-		</div>
+   <script type="text/javascript">
+       jQuery.fn.circle();
+       jQuery.fn.sizetable();
+   </script>
+   <div id="wrapper">
+       <div id="header">
+           <div id="left_head" class="alignleft">
+               <a href="/"><img src="{{ MEDIA_URL }}images/logo.png" class="alignleft" id="logotype"/></a>
+           </div>
+           <div id="right_head" class="alignleft">
+               <div id="head_info">
+                    {% cart_box request %}
+                   <div class="info alignleft">
+                       Оборудование для комплексного оснащения магазинов,<br/>
+                           ресторанов, баров, столовых и других форматов<br/>
+                        предприятий общественного питания,<br/>
+                        пищевых производств, отелей и прачечных.    <br/>    <br/><br/><br/><br/>
+                        <p style="color:#8b0000; font-weight:normal; font-style:normal;">Каталог находится в стадии заполнения. Если вы не нашли того, что искали - пожалуйста позвоните или напишите нам.
+На стадии доработки сайта цены на товары по запросу.</p>        
+                   </div>
+                   <div class="phone alignleft">
+                       Наши контакты:<br/>
+                       +7&nbsp;(495)&nbsp;<span>729-23-83</span><br/><br/>
+                       sales@smartfreeze.ru<br/>
+                       skype: bizzzmaker<br/>
+                       icq: 583812300
+                   </div>
+                   <div class="clr"></div>
+               </div>
+               <table border="0" cellpadding="0" cellspacing="0" id="menu">
+                   <tr>
+                       <td><a href="/">Главная</a></td>
+                       <td><a href="/cat/">Каталог</a></td>
+                       <td><a href="/delivery/">Доставка и оплата</a></td>
+                       <td><a href="/about/">О нас</a></td>
+                       <td stile="padding-left:20px;">
+                           <form id="searchform" class="alignright" method="get" action="/search/">
+                               <div class="alignleft">
+                                   <input type="text" onfocus="if(this.value=='Введите слово для поиска...') this.value='';" onblur="if(this.value=='') this.value='Введите слово для поиска...';" value="Введите слово для поиска..." name="s" id="s"/>
+                               </div>
+                                   <input class="go" type="submit" value="" />
+                           </form>
+                       </td>
+                   </tr>
+               </table>
+               
+           </div>
+           <div class="clr"></div>
+       </div>
 {% block site_wrapper %}{% endblock %}
-				<div class="clr"></div>						
-			</div><!--content end-->
-			<div id="footer">
-				© СмартФриз 2011. <br>
+               <div class="clr"></div>                        
+           </div><!--content end-->
+           <div id="footer">
+               © СмартФриз 2011. <br>
 <!-- Оборудование для комплексного оснащения магазинов, ресторанов, баров, столовых и других форматов предприятий общественного питания, пищевых производств, отелей и прачечных.
 -->
-			</div>
-		</div><!--main end-->
-		<div class="clr"></div>		
-	</div><!--page end-->
-			<div class="clr"></div>
-	<div>
+           </div>
+       </div><!--main end-->
+       <div class="clr"></div>        
+   </div><!--page end-->
+           <div class="clr"></div>
+   <div>
 {% include "metrika.html" %}
 </body>
 </html>
