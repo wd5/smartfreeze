@@ -94,7 +94,7 @@ class Series(models.Model):
         return ('product-page', [str(self.slug)])
 
     class Meta:
-        ordering = ['name']
+        ordering = ['brand']
         verbose_name_plural = 'Серии товара'
 
 class Model(models.Model):
