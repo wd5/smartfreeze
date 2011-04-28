@@ -1,7 +1,7 @@
 import os
 # Django settings for smartfreeze project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -53,6 +53,8 @@ if DEBUG:
     STATICFILES_DIRS = (
     "%s" % os.path.join(PROJECT_PATH, 'static'),
 )
+else:
+    STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
