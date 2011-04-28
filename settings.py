@@ -1,5 +1,8 @@
 import os
-# Django settings for smartfreeze project.
+try:
+    from local_settings import *
+except ImportError:
+    pass# Django settings for smartfreeze project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -49,7 +52,8 @@ USE_L10N = True
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 #STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
-STATICFILES_DIRS = (
+if DEBUG:
+    STATICFILES_DIRS = (
     "%s" % os.path.join(PROJECT_PATH, 'static'),
 )
 
@@ -102,7 +106,4 @@ INSTALLED_APPS = (
     'tinymce',
 )
 
-try:
-    from local_settings import *
-except ImportError:
-    pass
+
