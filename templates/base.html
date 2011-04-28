@@ -4,13 +4,13 @@
 <html> 
 <head>
    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-   <link href="{{ MEDIA_URL }}style.css" type="text/css" rel="stylesheet" />
+   <link href="{{ STATIC_URL }}style.css" type="text/css" rel="stylesheet" />
    <!--[if lt IE 9]>
        <script src="">http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
    <![endif]-->
-   <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.4.4.min.js"></script>
-   <script type="text/javascript" src="{{ MEDIA_URL }}js/circle.js"></script>
-   <script type="text/javascript" src="{{ MEDIA_URL }}js/sizetable.js"></script>
+   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.4.4.min.js"></script>
+   <script type="text/javascript" src="{{ STATIC_URL }}js/circle.js"></script>
+   <script type="text/javascript" src="{{ STATIC_URL }}js/sizetable.js"></script>
    <script type="text/javascript">
        $(document).ready(function(){
            $('#sidebar_menu li ul li').each(function(){
@@ -29,7 +29,7 @@
    <div id="wrapper">
        <div id="header">
            <div id="left_head" class="alignleft">
-               <a href="/"><img src="{{ MEDIA_URL }}images/logo.png" class="alignleft" id="logotype"/></a>
+               <a href="/"><img src="{{ STATIC_URL }}images/logo.png" class="alignleft" id="logotype"/></a>
            </div>
            <div id="right_head" class="alignleft">
                <div id="head_info">

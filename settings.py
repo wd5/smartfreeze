@@ -47,17 +47,22 @@ USE_L10N = True
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/"
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
-MEDIA_ROOT = os.path.join(PROJECT_PATH, 'static')
+#STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+STATICFILES_DIRS = (
+    "/Users/vladimir/PycharmProjects/smartfreeze/static/",
+)
+
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/static/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'b*ntm6w%k&tf9z23qq12dbf4@b2!h_ij_tk28r8^1v&cy%0#l3'
@@ -87,9 +92,11 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.staticfiles',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+#    'grappelli',
     'django.contrib.admin',
     'smartfreeze.catalog',
     'smartfreeze.cart',
