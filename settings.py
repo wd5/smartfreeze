@@ -1,8 +1,5 @@
 import os
-try:
-    from local_settings import *
-except ImportError:
-    pass# Django settings for smartfreeze project.
+# Django settings for smartfreeze project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -106,4 +103,7 @@ INSTALLED_APPS = (
     'tinymce',
 )
 
-
+try:
+    from local_settings import *
+except ImportError:
+    pass
