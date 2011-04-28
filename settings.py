@@ -46,6 +46,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/"
+ADMIN_MEDIA_PREFIX = "/media/admin/"
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 #STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
