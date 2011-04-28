@@ -6,8 +6,8 @@
 				{% category_list request.path %}
 			</div>
 			<div id="main" class="alignleft">
-            <a href="/cat">Каталог товара</a> »
     <!--
+            <a href="/cat">Каталог товара</a> »
             {% for item in category.section.all %}
                 <a href="/section/{{ item.slug }}">{{ item.name }}</a>{% if forloop.last %}{% else %}/{% endif %}
             {% endfor %}
