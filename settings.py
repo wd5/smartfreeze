@@ -80,6 +80,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'smartfreeze.ReferMiddleware.ReferMiddleware',
 )
 
 ROOT_URLCONF = 'smartfreeze.urls'
