@@ -160,8 +160,8 @@ def save_client(request, form):
 def send_admin_email(request, cart_items, form):
     products_for_email = ""
     for item in cart_items:
-        products_for_email += u"%s:%s шт  http://my-spy.ru%s\n" % (item.product.name,
-                                          item.quantity, item.product)
+        products_for_email += u"%s:%s шт  http://smartfreeze.ru.ru/product/%s\n" % (item.product.name,
+                                          item.quantity, item.slug)
     t = threading.Thread(target= send_mail, args=[
         u'Заказ от %s' % form.cleaned_data['name'],
         u'Имя: %s \nГород: %s\nТелефон: %s\nАдрес: %s\nEmail: %s\n\n%s\n\nПришел с: %s'
@@ -178,7 +178,7 @@ def send_client_email(cart_items, form):
         products_for_email += u"%s:%s шт  http://my-spy.ru%s\n" % (item.product.name,
                                           item.quantity, item.product.name)
     t = threading.Thread(target= send_mail, args=[
-        u'Ваш заказ от my-spy',
+        u'Ваш заказ от smartfreeze',
         u'Здравствуйте %s,\n\nВы оформили у нас заказ на:\n%s\n\nВ ближайшее время наш менеджер с вами свяжется.\nС Уважением, smartfreeze.ru' %
         (form.cleaned_data['name'], products_for_email),
         settings.EMAIL_HOST_USER, [form.cleaned_data['email']], 'fail_silently=False'])
