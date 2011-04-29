@@ -179,7 +179,7 @@ def send_client_email(cart_items, form):
                                           item.quantity, item.product.name)
     t = threading.Thread(target= send_mail, args=[
         u'Ваш заказ от my-spy',
-        u'Здравствуйте %s,\n\nВы оформили у нас заказ на:\n%s\n\nВ ближайшее время наш менеджер с вами свяжется.\nС Уважением, my-spy.ru' %
+        u'Здравствуйте %s,\n\nВы оформили у нас заказ на:\n%s\n\nВ ближайшее время наш менеджер с вами свяжется.\nС Уважением, smartfreeze.ru' %
         (form.cleaned_data['name'], products_for_email),
         settings.EMAIL_HOST_USER, [form.cleaned_data['email']], 'fail_silently=False'])
     t.setDaemon(True)
