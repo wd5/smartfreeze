@@ -175,8 +175,8 @@ def send_admin_email(request, cart_items, form):
 def send_client_email(cart_items, form):
     products_for_email = ""
     for item in cart_items:
-        products_for_email += u"%s:%s шт  http://my-spy.ru%s\n" % (item.product.name,
-                                          item.quantity, item.product.name)
+        products_for_email += u"%s:%s шт  http://smartfreeze.ru/product/%s\n" % (item.product.name,
+                                          item.quantity, item.product.series.slug)
     t = threading.Thread(target= send_mail, args=[
         u'Ваш заказ от smartfreeze',
         u'Здравствуйте %s,\n\nВы оформили у нас заказ на:\n%s\n\nВ ближайшее время наш менеджер с вами свяжется.\nС Уважением, smartfreeze.ru' %
