@@ -1,3 +1,4 @@
+          # -*- coding: utf-8 -*-
 from django import template
 from catalog.models import Section
 from cart import cart
@@ -18,3 +19,12 @@ def cart_box(request):
     return {
         'box_count': box_count,
 }
+
+@register.filter
+def separation(value):
+    try:
+        svalue = str(value)[:-3]
+        count = len(str(value/1000).split('.')[0])
+        return svalue[:count] + ' ' + svalue[count:]
+    except TypeError:
+        return 0
