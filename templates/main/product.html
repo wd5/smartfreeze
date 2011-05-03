@@ -28,6 +28,7 @@
 								{% for feature in product.feature_set.all %}
                             		<td>{{ feature.name }}</td>
                        	 		{% endfor %}
+                                <td>Цена</td>
                        	 		<td></td>
 							</tr>
 								{% for model in product.model_set.all  %}
@@ -36,6 +37,7 @@
                                         {% for item in model.value_set.all %}
                                             <td class="textcenter values">{{ item.value }}</td>
                                         {% endfor %}
+                                        <td class="textcenter values" style="color:black;"><p style="font-size:1.2em">{% if model.price %}{{ model.price|separation }} <span class="rur">p<span>уб. {% else %}По запросу{% endif %}</span></span></p></td>
                                         <td class="values"> 
 						        			<form method="post" action="" class="cart textcenter"> {% csrf_token %}
 									    		<input type="hidden" name="model_id" value="{{ model.id }}" id="{{ model.id }}" />

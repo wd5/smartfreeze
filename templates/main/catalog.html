@@ -22,9 +22,13 @@
 								<td class="img_block">
 										<a href="{{ product.get_absolute_url }}"><img src="{{ product.modelsphoto_set.all.0.image.thumb_url }}"/></a>
 								</td>
-								<td colspan="5" class="dscr">
+							<td colspan="5" class="dscr">
 									<a href="{{ product.get_absolute_url }}"><h4> {{ category.name }} {{ product.name }}</h4></a>
-									<a href="{{ product.brand.get_absolute_url }}">{{ product.brand }}</a></br>
+                                    {% if brand %}
+                                    <p class="product_brand">{{ product.brand }}</p></br>
+                                    {% else %}
+                                    <a href="{{ product.brand.get_absolute_url }}">{{ product.brand }}</a></br>
+                                    {% endif %}
 									</br>
 									<p>{{ product.mini_html_description|safe }}</p>
 								</td>
