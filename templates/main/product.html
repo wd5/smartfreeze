@@ -15,7 +15,7 @@
 										<img src="{{ product.modelsphoto_set.all.0.image.thumb_url }}"/>
 								</td>
 								<td colspan="5" class="dscr">
-									<h4>{{ category.name }} {{ product.name }}</h4>
+									<h4>{{ product.category.name }} {{ product.name }}</h4>
 									<p class="product_brand">{{ product.brand }}</p></br>
 									</br>
 									<p>{{ product.mini_html_description|safe }}</p>
