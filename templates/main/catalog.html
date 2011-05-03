@@ -37,6 +37,7 @@
 								{% for feature in product.feature_set.all %}
                             		<td>{{ feature.name }}</td>
                        	 		{% endfor %}
+                       	 		<td>Цена</td>
                        	 		<td></td>
 							</tr>
 								{% for model in product.model_set.all  %}
@@ -45,8 +46,8 @@
                                         {% for item in model.value_set.all %}
                                             <td class="textcenter values">{{ item.value }}</td>
                                         {% endfor %}
-                                        <td class="textcenter values" style="color:black;">{{ model.price|separation }} <span style="position:relative;">P<i style="position:absolute; right:0px; bottom:5px;">-</i></span></td>
-                                        <td class="values">
+                                        <td class="textcenter values" style="color:black;"><p style="font-size:1.2em">{{ model.price }} <span class="rur">p<span>уб.</span></span></p></td>
+                                        <td class="values"> 
 						        			<form method="post" action="" class="cart textcenter"> {% csrf_token %}
 									    		<input type="hidden" name="model_id" value="{{ model.id }}" id="{{ model.id }}" />
 									    		<input type="submit" value=" " class="btn"/>
