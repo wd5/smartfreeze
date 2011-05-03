@@ -46,7 +46,7 @@
                                             <td class="textcenter values">{{ item.value }}</td>
                                         {% endfor %}
                                         <td class="textcenter values" style="color:black;">{{ model.price|separation }} <span style="position:relative;">P<i style="position:absolute; right:0px; bottom:5px;">-</i></span></td>
-                                        <td class="values"> 
+                                        <td class="values">
 						        			<form method="post" action="" class="cart textcenter"> {% csrf_token %}
 									    		<input type="hidden" name="model_id" value="{{ model.id }}" id="{{ model.id }}" />
 									    		<input type="submit" value=" " class="btn"/>
