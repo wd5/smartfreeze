@@ -111,6 +111,7 @@ class Model(models.Model):
 class ModelsPhoto(models.Model):
     item = models.ForeignKey(Series)
     image = ThumbnailImageField(upload_to='products_image', thumb_width=200, thumb_height=200, completion="resized" )
+    name = models.CharField(max_length=200, null=True, blank=True)
 
     class Meta:
         ordering = ['item']
