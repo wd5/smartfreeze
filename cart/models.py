@@ -82,7 +82,7 @@ class Client(models.Model):
         cart_items = CartProduct.objects.filter(cartitem = self.cart.id)
         products = ""
         for item in cart_items:
-            products += u"%s - %sшт; " % (item.product.slug, item.quantity )
+            products += u"%s - %sшт; " % (item.product, item.quantity )
         return products
 
     class Meta:

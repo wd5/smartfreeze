@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     (r'^', include('smartfreeze.catalog.urls')),
     (r'^cart/', include('smartfreeze.cart.urls')),
     (r'^admin/', include(admin.site.urls)),
+    (r'^myadmin/', include('smartfreeze.myadmin.urls')),
     (r'^tinymce/', include('tinymce.urls')),
 )
 
