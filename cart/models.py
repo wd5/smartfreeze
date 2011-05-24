@@ -59,11 +59,8 @@ DELIVERY_CHOICES = (
 )
 
 class Client(models.Model):
-    surname = models.CharField(max_length=50, null=True, blank=True, verbose_name="Фамилия")
     name = models.CharField(max_length=50, verbose_name="Имя")
-    patronymic = models.CharField(max_length=50, null=True, blank=True, verbose_name="Отчество")
     city = models.CharField(max_length=50, null=True, blank=True, verbose_name="Город")
-    postcode = models.IntegerField(null=True, blank=True, verbose_name="Индекс")
     phone = models.CharField(max_length=20, verbose_name="Телефон")
     address = models.CharField(max_length=200, null=True, blank=True, verbose_name="Адрес")
     email = models.EmailField(null=True, blank=True)
@@ -71,12 +68,9 @@ class Client(models.Model):
     ordered_at = models.DateTimeField(auto_now_add=True )
     subtotal = models.DecimalField(null=True, blank=True, max_digits=10, decimal_places=2, verbose_name="Сумма")
     discount = models.DecimalField(null=True, blank=True, max_digits=10, decimal_places=2, verbose_name="Скидка")
-    tracking_number = models.CharField(max_length=20, null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, verbose_name="Статус", default='PROCESS')
     referrer = models.URLField(verify_exists=False, max_length=500)
     comment = models.TextField(null=True, blank=True)
-    execute_at = models.DateTimeField(default=datetime.now,editable=True,null=True, blank=True)
-    delivery = models.CharField(max_length=20, choices=DELIVERY_CHOICES, null=True, blank=True)
 
     def get_order(self):
         cart_items = CartProduct.objects.filter(cartitem = self.cart.id)
