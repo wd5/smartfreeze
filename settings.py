@@ -3,6 +3,7 @@ import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+LOGIN_URL = '/myadmin/'
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
