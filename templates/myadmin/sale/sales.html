@@ -7,17 +7,8 @@
 			<td rowspan="2">
 			    <a href="/myadmin/sales/all/" >Клиенты</a>
 			</td>
-			<td rowspan="2">
-			    <a href="/myadmin/store" >Склад</a>
-			</td>
-			<td rowspan="2">
-			    <a href="/myadmin/cash/month/" >Касса</a>
-			</td>
             <td rowspan="2">
 			    <a href="/myadmin/tasks/" >Задачи</a>
-			</td>
-            <td rowspan="2">
-			    <a href="/myadmin/orders/" >Заказы</a>
 			</td>
 		</table>
 		<div class="autent">
@@ -32,8 +23,6 @@
 		<div class="hidden">
 			<form action="" method="post">{% csrf_token %}
 					<table id="selector_table" cellspacing="0" cellpadding="0" border="0">
-						<tbody>
-							<tr>
 								<td>
 									<label for="id_status_0">
 									<input class="first" id="id_status_0" type="checkbox" value="PROCESS" name='status'
@@ -44,18 +33,6 @@
 									{% endfor %}
 									>
 									{% status_count "PROCESS" %}
-									</label>
-								</td>
-								<td>
-									<label for="id_status_4">
-									<input class="second" id="id_status_4" type="checkbox" value="COURIER_TAKE" name="status"
-									{% for i in statuses %}
-										{% if i == "COURIER_TAKE" %}
-									    	checked="checked"
-									    {% endif %}
-									{% endfor %}
-									>
-                                    {% status_count "COURIER_TAKE" %}
 									</label>
 								</td>
 								<td>
@@ -70,32 +47,6 @@
 	                                {% status_count "REFUSED" %}
 									</label>
 								</td>
-							</tr>
-							<tr>
-								<td>
-								<label for="id_status_1">
-								<input class="first" id="id_status_1" type="checkbox" value="POSTSEND" name="status"
-								{% for i in statuses %}
-										{% if i == "POSTSEND" %}
-									    	checked="checked"
-									    {% endif %}
-									{% endfor %}
-									>
-                                {% status_count "POSTSEND" %}
-								</label>
-								</td>
-								<td>
-								<label for="id_status_5">
-								<input class="second" id="id_status_5" type="checkbox" value="BUYER_TAKE" name="status"
-								{% for i in statuses %}
-										{% if i == "BUYER_TAKE" %}
-									    	checked="checked"
-									    {% endif %}
-									{% endfor %}
-									>
-                                {% status_count "BUYER_TAKE" %}
-								</label>
-								</td>
 								<td>
 								<label for="id_status_11">
 								<input class="fird" id="id_status_11" type="checkbox" value="CASH_IN" name="status"
@@ -108,67 +59,6 @@
                                 {% status_count "CASH_IN" %}
 								</label>
 								</td>
-							</tr>
-							<tr>
-								<td>
-								<label for="id_status_3">
-								<input class="first" id="id_status_3" type="checkbox" value="COURIER_SEND" name="status"
-								{% for i in statuses %}
-										{% if i == "COURIER_SEND" %}
-									    	checked="checked"
-									    {% endif %}
-									{% endfor %}
-									>
-                                {% status_count "COURIER_SEND" %}
-								</label>
-								</td>
-								<td>
-								<label for="id_status_6">
-								<input class="second" id="id_status_6" type="checkbox" value="WAYT_PRODUCT" name="status"
-								{% for i in statuses %}
-										{% if i == "WAYT_PRODUCT" %}
-									    	checked="checked"
-									    {% endif %}
-									{% endfor %}
-									>
-                                {% status_count "WAYT_PRODUCT" %}
-								</label>
-								</td>
-								<td>
-									<label>
-									<input class="all" id="fird" type="checkbox" value="all" name="all">
-									Все
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<td>
-								<label for="id_status_8">
-								<input class="first" id="id_status_8" type="checkbox" value="BACK" name="status"
-								{% for i in statuses %}
-										{% if i == "BACK" %}
-									    	checked="checked"
-									    {% endif %}
-									{% endfor %}
-									>
-                                {% status_count "BACK" %}
-								</label>
-								</td>
-								<td>
-								<label for="id_status_2">
-								<input class="second" id="id_status_2" type="checkbox" value="POSTSENDED" name="status"
-								{% for i in statuses %}
-										{% if i == "POSTSENDED" %}
-									    	checked="checked"
-									    {% endif %}
-									{% endfor %}
-									>
-                                {% status_count "POSTSENDED" %}
-								</label>
-								</td>
-								
-							</tr>
-							<tr>
 								<td>
 								<label for="id_status_9">
 								<input class="first" class="fird" id="id_status_9" type="checkbox" value="CONTACT_AT" name="status"
@@ -180,27 +70,10 @@
 									>
                                 {% status_count "CONTACT_AT" %}
 								</label>
-								</td>
-								<td>
-									<label>
-									<input class="all" id="second" type="checkbox" value="all" name="all">
-									Все
-									</label>
-								</td>
-							</tr>	
-							<tr>
-								<td>
-									<label>
-									<input class="all" id="first" type="checkbox" value="all" name="all">
-									Все
-									</label>
-								</td>
-							</tr>												
-						</tbody>
-					</table>					
+					</table>
 					<input type="submit" value="Выбрать" class="selectbutton" /><br/><br/>
-					<a href="/myadmin/sales/all/" class="selectbutton">Все клиенты</a>					
-			</form>			
+					<a href="/myadmin/sales/all/" class="selectbutton">Все клиенты</a>
+			</form>
 		</div>
 	</div>
 <div id="period">
@@ -245,9 +118,6 @@
         <td>
             Имя
         </td>
-		<td>
-			Время назначения
-		</td>
         <td>
             Телефон
         </td>
@@ -270,27 +140,15 @@
         <td class="bottomborder rightborder">
 		{{ client.surname }} {{ client.name }} {{ client.patronymic }}
         </td>
-		<td class="bottomborder rightborder">
-            {% if client.execute_at %}
-                {{ client.execute_at }}
-            {% endif %}
-		</td>
         <td class="bottomborder rightborder">
             {{ client.phone }}
         </td>
-		<td class="bottomborder rightborder">
-			{{ client.get_order|safe }}
+    		<td class="bottomborder rightborder">
+			{{ client.company }}
 		</td>
-        <td class="bottomborder rightborder">
-            {{ client.subtotal }} руб.
-        </td>
-        <td class="bottomborder rightborder">
-            {{ client.discount }} руб.
-        </td>
-        <td class="rightborder bottomborder">
-            {% if client.tracking_number %}<a href="http://www.emspost.ru/tracking/{{ client.tracking_number }}" target="_blank">{{ client.tracking_number }}</a><br>
-            {{ client.tracking_status }}{% endif %}
-        </td>
+		<td class="bottomborder rightborder">
+			{{ client.order|safe }}
+		</td>
         <td rowspan="2" class="bottomborder">
 			<a href="/myadmin/client/{{ client.id }}/" target="_blank"><img src="/static/res/img/edit.png"/></a>
 		</td>

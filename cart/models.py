@@ -40,14 +40,6 @@ class CartItem(models.Model):
 
 STATUS_CHOICES = (
     ('PROCESS', 'Обработать'),
-    ('POSTSEND', 'Отправить почтой'),
-    ('POSTSENDED', 'Отправлено почтой'),
-    ('COURIER_SEND', 'Отправить курьером'),
-    ('COURIER_TAKE', 'Передано курьеру'),
-    ('BUYER_TAKE', 'Передано покупателю'),
-    ('WAYT_PRODUCT', 'Ожидание поступления товара'),
-    ('CHANGE', 'Обменять'),
-    ('BACK', 'Вернуть'),
     ('CONTACT_AT', 'Связаться в назначенное время'),
     ('REFUSED', 'Снятие заявки клиентом'),
     ('CASH_IN', 'Деньги внесены'),
@@ -62,15 +54,18 @@ class Client(models.Model):
     name = models.CharField(max_length=50, verbose_name="Имя")
     city = models.CharField(max_length=50, null=True, blank=True, verbose_name="Город")
     phone = models.CharField(max_length=20, verbose_name="Телефон")
+    company = models.CharField(max_length=300, verbose_name="Компания")
     address = models.CharField(max_length=200, null=True, blank=True, verbose_name="Адрес")
     email = models.EmailField(null=True, blank=True)
+    message = models.TextField(null=True, blank=True)
     cart = models.ForeignKey(CartItem)
     ordered_at = models.DateTimeField(auto_now_add=True )
     subtotal = models.DecimalField(null=True, blank=True, max_digits=10, decimal_places=2, verbose_name="Сумма")
     discount = models.DecimalField(null=True, blank=True, max_digits=10, decimal_places=2, verbose_name="Скидка")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, verbose_name="Статус", default='PROCESS')
     referrer = models.URLField(verify_exists=False, max_length=500)
-    comment = models.TextField(null=True, blank=True)
+    comment = models.TextField(null=True, blank=True, verbose_name="Комментарий")
+    order = models.TextField(null=True, blank=True)
 
     def get_order(self):
         cart_items = CartProduct.objects.filter(cartitem = self.cart.id)

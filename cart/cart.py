@@ -133,10 +133,12 @@ class Subtotal:
 
 def save_client(request, form):
     cart = CartItem.objects.get(cart_id=_cart_id(request))
-    subtotal_class = Subtotal(request)
-
     ci = Client()
     ci.cart = cart
+    products = CartProduct.objects.filter(cartitem=cart.id)
+    order = ""
+    for i in products:
+        order += u"%s %s - %i шт<br>" % (i.product.series.category, i.product.name, i.quantity)
 
     ci.name = form.cleaned_data['name']
 #    ci.surname = form.cleaned_data['surname']
@@ -144,11 +146,14 @@ def save_client(request, form):
     ci.city = form.cleaned_data['city']
 #    ci.postcode = form.cleaned_data['postcode']
     ci.phone = form.cleaned_data['phone']
+    ci.company = form.cleaned_data['company']
     ci.address = form.cleaned_data['address']
     ci.email = form.cleaned_data['email']
+    ci.message = form.cleaned_data['message']
 #    ci.subtotal = subtotal_class.subtotal()
 #    ci.discount = subtotal_class.discount
     ci.referrer = request.COOKIES.get('REFERRER', None)
+    ci.order = order
     ci.save()
     # Обновляю количество на складе
 #    products = CartProduct.objects.filter(cartitem=cart)

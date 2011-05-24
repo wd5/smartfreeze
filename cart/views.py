@@ -2,7 +2,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from forms import OrderForm
-from settings import SEND_SMS
+from settings import SEND_SMS, SEND_EMAIL
 import cart
 
 def show_cart(request, template_name="cart/cart.html"):
@@ -28,10 +28,11 @@ def show_cart(request, template_name="cart/cart.html"):
             if SEND_SMS:
                 cart.send_sms(cart_items, form)
             # Отправляем админу email
-            cart.send_admin_email(request, cart_items, form)
-            if form.cleaned_data['email']:
-                # Отправляем email клиенту
-                cart.send_client_email(cart_items, form)
+            if SEND_EMAIL:
+                cart.send_admin_email(request, cart_items, form)
+                if form.cleaned_data['email']:
+                    # Отправляем email клиенту
+                    cart.send_client_email(cart_items, form)
     else:
         form = OrderForm()
 
