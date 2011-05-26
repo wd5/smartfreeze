@@ -111,7 +111,6 @@ def delete_client(request, id):
     client = Client.objects.get(id=id)
     cart_id = client.cart.id
     client.delete()
-    print "Delete %s" % client.id
     cart = CartItem.objects.get(id=cart_id)
     cart.delete()
     return HttpResponseRedirect('/myadmin/sales/all')
