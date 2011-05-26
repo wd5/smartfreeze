@@ -48,6 +48,20 @@
 									</label>
 								</td>
 							</tr>
+                            <tr>
+								<td>
+									<label for="id_status_10">
+									<input class="fird" id="id_status_10" type="checkbox" value="WAYT" name="status"
+									{% for i in statuses %}
+										{% if i == "WAYT" %}
+									    	checked="checked"
+									    {% endif %}
+									{% endfor %}
+									>
+	                                {% status_count "WAYT" %}
+									</label>
+								</td>
+							</tr>
 							<tr>
 								<td>
 								<label for="id_status_11">
