@@ -13,10 +13,10 @@ class ClientForm(ModelForm):
     name = forms.CharField(label='Имя*',error_messages={'required': 'Имя обязательно для заполнения'})
     phone = forms.CharField(label='Телефон*', error_messages={'required': 'Телефон обязателен для заполнения'})
     address = forms.CharField(label='Адрес', widget=forms.Textarea(attrs={'rows':'2'}), required=False)
-    order = forms.CharField(label="Заказ",widget=TinyMCE())
+    order = forms.CharField(label="Заказ",widget=TinyMCE(), required=False)
     class Meta:
         model = Client
-        exclude = ('referrer', 'cart', 'message', 'subtotal', 'discount' )
+        exclude = ('referrer', 'cart', 'message', 'subtotal', 'discount', 'change_log', 'last_user' )
         widgets = {
             'delivery' : RadioSelect(),
         }

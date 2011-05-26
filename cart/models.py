@@ -1,7 +1,8 @@
           # -*- coding: utf-8 -*-
 from django.db import models
 from catalog.models import Series, Model
-from datetime import datetime
+from django.utils.encoding import smart_unicode
+from datetime import date
 
 
 class CartProduct(models.Model):
@@ -54,7 +55,7 @@ class Client(models.Model):
     name = models.CharField(max_length=50, verbose_name="Имя")
     city = models.CharField(max_length=50, null=True, blank=True, verbose_name="Город")
     phone = models.CharField(max_length=20, verbose_name="Телефон")
-    company = models.CharField(max_length=300, verbose_name="Компания")
+    company = models.CharField(max_length=300, blank=True, verbose_name="Компания")
     address = models.CharField(max_length=200, null=True, blank=True, verbose_name="Адрес")
     email = models.EmailField(null=True, blank=True)
     message = models.TextField(null=True, blank=True)
@@ -66,6 +67,8 @@ class Client(models.Model):
     referrer = models.URLField(verify_exists=False, max_length=500)
     comment = models.TextField(null=True, blank=True, verbose_name="Комментарий")
     order = models.TextField(null=True, blank=True)
+    last_user = models.CharField(max_length=200, null=True, blank=True)
+    change_log = models.TextField(null=True, blank=True)
 
     def get_order(self):
         cart_items = CartProduct.objects.filter(cartitem = self.cart.id)
@@ -79,3 +82,39 @@ class Client(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, force_insert=False, force_update=False, using=None):
+        not_new = self.pk
+        if not self.last_user:
+            user = u"Сайт"
+        else:
+            user = self.last_user
+        if not_new:
+            old = Client.objects.get(pk=self.pk)
+            for f in self._meta.fields:
+                if f.value_from_object(old) != f.value_from_object(self):
+                        if not f.name == 'change_log':
+                            if not f.name == 'last_user':
+                                    if f.name == 'status':
+                                        if f.value_from_object(old):
+                                            self.change_log += u"%s - %s изменил %s с %s на %s<br>\r" %\
+                                              (date.today(), user, smart_unicode(Client._meta.get_field(f.name).verbose_name),
+                                               old.get_status_display(), self.get_status_display())
+                                        else:
+                                            self.change_log += u"%s - %s добавил %s %s<br>\r" %\
+                                                         (date.today(), user, smart_unicode(Client._meta.get_field(f.name).verbose_name),
+                                                          self.get_status_display())
+                                    else:
+                                        if f.value_from_object(old):
+                                            self.change_log += u"%s - %s изменил %s с %s на %s<br>\r" %\
+                                              (date.today(), user, smart_unicode(Client._meta.get_field(f.name).verbose_name),
+                                               f.value_from_object(old), f.value_from_object(self))
+                                        else:
+                                            self.change_log += u"%s - %s добавил %s %s<br>\r" %\
+                                                         (date.today(), user, smart_unicode(Client._meta.get_field(f.name).verbose_name),
+                                                          f.value_from_object(self))
+        super(Client, self).save() # Call the "real" save() method.
+        if not not_new == self.pk:
+            client = Client.objects.get(pk=self.pk)
+            client.change_log = u"%s - %s добавил клиента<br>\r" % (date.today(), user)
+            client.save()

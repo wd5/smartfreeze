@@ -124,21 +124,11 @@ def edit_client(request, id):
     if request.method == 'POST':
         # Получаю предыдущий статус клиента
         client_status = client.status
-        sms_status = client.sms_status
         # Сохраняю форму используя объект клиента
         form = ClientForm(request.POST, instance=client, prefix='client')
         if form.is_valid():
             newform = form.save(commit=False)
             newform.last_user = request.user.first_name
-            if newform.sms_status:
-                if not sms_status:
-                    login = 'palv1@yandex.ru'
-                    password = '97ajhJaj9zna'
-                    phone = re.sub("\D", "", newform.phone)
-                    from_phone = "79151225291"
-                    msg = u"Здравствуйте, посылка с вашим заказом выслана. Номер отправления: %s Отследить посылку можно на сайте emspost.ru С Уважением my-spy.ru" % newform.tracking_number
-                    msg = urllib.urlencode({'msg': msg.encode('cp1251')})
-                    req = urllib2.urlopen('http://sms48.ru/send_sms.php?login=%s&to=%s&%s&from=%s&check2=%s' % (login, phone, msg.encode('cp1251'), from_phone, md5(login + md5(password).hexdigest() + phone).hexdigest()) )
             newform.save()
         else:
             return render_to_response("myadmin/sale/client_form.html", locals(), context_instance=RequestContext(request))
